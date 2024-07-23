@@ -63,7 +63,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="References" href="physics/em_spectrum.html" />
+    <link rel="next" title="The Electromagnetic Spectrum" href="physics/em_spectrum.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -134,8 +134,14 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
-    <p class="title logo__title">Ocean Remote Sensing</p>
   
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
@@ -150,7 +156,8 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Physical Principles</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="physics/em_spectrum.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="physics/em_spectrum.html">The Electromagnetic Spectrum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="physics/blackbodies.html">Blackbody Radiation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Measurements</span></p>
 <ul class="nav bd-sidenav">
@@ -169,8 +176,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="variables/sea_ice.html">Sea Ice</a></li>
 <li class="toctree-l1"><a class="reference internal" href="variables/ocean_winds.html">Ocean Winds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="variables/ssh.html">Sea Surface Height</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables/bathymetry.html">Bathymetry</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
@@ -383,13 +391,27 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="ocean-remote-sensing">
 <h1>Ocean Remote Sensing<a class="headerlink" href="#ocean-remote-sensing" title="Permalink to this headline">#</a></h1>
 <p>Welcome to an Introduction to Ocean Remote Sensing!</p>
-<p>This resource is under construction.</p>
+<p>This resource is designed to be a practical guide to introduce the physical basis and interpretation of remotely-sensed observations of the ocean. Here, we walk through many of the common remote sensing platforms, the measurements they make, and how they are used in oceanographic science.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This book is currently being written for a MS 274 Special Topics Course at the Moss Landing Marine Labs, San José State University. It is a work in progress and will continue to be updated through Fall 2024. If you have any feedback or constructive suggestions, feel free to submit an issue on the <a class="reference external" href="https://github.com/ProfMikeWood/ocean_remote_sensing_book">Github repository</a> for this book.</p>
+</div>
+<p>This book is for people new to ocean remote modeling sensing it will hopefully also serve as a convenient reference for those who have been at it for a while. People with an introductory background in coding, some knowledge of calculus, and an understanding of Earth science topics will be most suited to leverage these resources.</p>
+<p>The book is organized into four main sections:</p>
+<ol class="arabic simple">
+<li><p>Getting Started - instructions for installing tools used throughout this book</p></li>
+<li><p>Physical Principles - a short background in various physics topics underlying remote sensing observations</p></li>
+<li><p>Measurements - description of the physical measurements made by remote sensing platforms</p></li>
+<li><p>Variables - overview of the oceanographic variations inferred from remote measurements</p></li>
+</ol>
+<p>None of these sections is intended to be exhaustive - rather, the aim is to generate a practical introduction to the topic. Additional references are provided at the end of each section.</p>
 <section id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">#</a></h2>
 <div class="toctree-wrapper compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Physical Principles</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="physics/em_spectrum.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="physics/em_spectrum.html">The Electromagnetic Spectrum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="physics/blackbodies.html">Blackbody Radiation</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -412,15 +434,16 @@ document.write(`
 <li class="toctree-l1"><a class="reference internal" href="variables/sea_ice.html">Sea Ice</a></li>
 <li class="toctree-l1"><a class="reference internal" href="variables/ocean_winds.html">Ocean Winds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="variables/ssh.html">Sea Surface Height</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables/bathymetry.html">Bathymetry</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">References</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
 </div>
-<p>This book is created for an MS 274 Advanced Topics Course at Moss Landing Marine Labs, San Jose State University.</p>
+<p>This book is created for an MS 274 Advanced Topics Course at Moss Landing Marine Labs, San José State University.</p>
 </section>
 </section>
 
@@ -460,7 +483,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">References</p>
+        <p class="prev-next-title">The Electromagnetic Spectrum</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

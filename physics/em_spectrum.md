@@ -1,5 +1,7 @@
-# References
+# The Electromagnetic Spectrum
 
-```{bibliography}
-:style: alpha
-```
+## Light as Particles and Waves
+Under construction.
+
+## The Electromagnetic Spectrum
+Under construction.

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>The Electromagnetic Spectrum &#8212; Ocean Remote Sensing</title>
+    <title>Downloading Sea Ice Data from NSIDC &#8212; Ocean Remote Sensing</title>
   
   
   
@@ -60,11 +60,9 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'physics/em_spectrum';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tools/Downloading Data from NSIDC';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Blackbody Radiation" href="blackbodies.html" />
-    <link rel="prev" title="Ocean Remote Sensing" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -156,9 +154,9 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Physical Principles</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">The Electromagnetic Spectrum</a></li>
-<li class="toctree-l1"><a class="reference internal" href="blackbodies.html">Blackbody Radiation</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../physics/em_spectrum.html">The Electromagnetic Spectrum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/blackbodies.html">Blackbody Radiation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Measurements</span></p>
 <ul class="nav bd-sidenav">
@@ -253,7 +251,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fphysics/em_spectrum.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftools/Downloading Data from NSIDC.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -283,7 +281,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/physics/em_spectrum.ipynb" target="_blank"
+      <li><a href="../_sources/tools/Downloading Data from NSIDC.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -365,7 +363,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>The Electromagnetic Spectrum</h1>
+    <h1>Downloading Sea Ice Data from NSIDC</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -375,8 +373,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-duality-of-light">The Duality of Light</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">The Electromagnetic Spectrum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-the-modules-for-this-notebook">Import the modules for this notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-destination-file-path">Define the destination file path</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-a-list-of-file-paths">Make a list of file paths</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-the-data">Download the data</a></li>
 </ul>
             </nav>
         </div>
@@ -388,25 +388,106 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="the-electromagnetic-spectrum">
-<h1>The Electromagnetic Spectrum<a class="headerlink" href="#the-electromagnetic-spectrum" title="Permalink to this headline">#</a></h1>
-<p>Remote sensing of the ocean is primarily focused with the observation of electromagnetic information going to and coming from the ocean surface. With the exception of gravimetry, all other remotely-sensed observations of the ocean use at least one portion of the electromagnetic spectrum.</p>
-<p>In this page, we describe the nature of light and outline the various components on the electromagnetic spectrum.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="downloading-sea-ice-data-from-nsidc">
+<h1>Downloading Sea Ice Data from NSIDC<a class="headerlink" href="#downloading-sea-ice-data-from-nsidc" title="Permalink to this headline">#</a></h1>
+<p>This notebook is designed to download sea ice data concentration data, available at <a class="reference external" href="https://nsidc.org/data/g02202/versions/4">https://nsidc.org/data/g02202/versions/4</a></p>
+<section id="import-the-modules-for-this-notebook">
+<h2>Import the modules for this notebook<a class="headerlink" href="#import-the-modules-for-this-notebook" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">os</span>
 </pre></div>
 </div>
 </div>
 </div>
-<section id="the-duality-of-light">
-<h2>The Duality of Light<a class="headerlink" href="#the-duality-of-light" title="Permalink to this headline">#</a></h2>
-<p>Under Construction.</p>
 </section>
-<section id="id1">
-<h2>The Electromagnetic Spectrum<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
-<img alt="The Electromagnetic Spectrum" class="align-center" src="../_images/em_spectrum.png" />
+<section id="define-the-destination-file-path">
+<h2>Define the destination file path<a class="headerlink" href="#define-the-destination-file-path" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define the path to the folder where the data will be downloaded</span>
+<span class="n">download_folder</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="make-a-list-of-file-paths">
+<h2>Make a list of file paths<a class="headerlink" href="#make-a-list-of-file-paths" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># hemisphere and hemisphere code</span>
+<span class="n">hemisphere</span> <span class="o">=</span> <span class="s1">&#39;north&#39;</span>
+<span class="n">hemisphere_code</span> <span class="o">=</span> <span class="s1">&#39;nh&#39;</span>
+
+<span class="c1"># initial satellite code</span>
+<span class="n">sat_code</span> <span class="o">=</span> <span class="s1">&#39;n07&#39;</span>
+
+<span class="c1"># define the base url</span>
+<span class="n">base_url</span> <span class="o">=</span> <span class="s1">&#39;https://noaadata.apps.nsidc.org/NOAA/G02202_V4/&#39;</span><span class="o">+</span><span class="n">hemisphere</span><span class="o">+</span><span class="s1">&#39;/monthly/&#39;</span>
+
+<span class="c1"># make a list of URls corresponding to the file date</span>
+<span class="n">file_urls</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1979</span><span class="p">,</span><span class="mi">2023</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">month</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">13</span><span class="p">):</span>
+
+        <span class="c1"># update satellite code when different satellites are used</span>
+        <span class="k">if</span> <span class="n">year</span><span class="o">==</span><span class="mi">1987</span> <span class="ow">and</span> <span class="n">month</span><span class="o">==</span><span class="mi">8</span><span class="p">:</span>
+            <span class="n">sat_code</span> <span class="o">=</span> <span class="s1">&#39;f08&#39;</span>
+        <span class="k">if</span> <span class="n">year</span><span class="o">==</span><span class="mi">1992</span> <span class="ow">and</span> <span class="n">month</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">sat_code</span> <span class="o">=</span> <span class="s1">&#39;f11&#39;</span>
+        <span class="k">if</span> <span class="n">year</span><span class="o">==</span><span class="mi">1995</span> <span class="ow">and</span> <span class="n">month</span><span class="o">==</span><span class="mi">10</span><span class="p">:</span>
+            <span class="n">sat_code</span> <span class="o">=</span> <span class="s1">&#39;f13&#39;</span>
+        <span class="k">if</span> <span class="n">year</span><span class="o">==</span><span class="mi">2008</span> <span class="ow">and</span> <span class="n">month</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">sat_code</span> <span class="o">=</span> <span class="s1">&#39;f17&#39;</span>
+        
+        <span class="n">yr</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+        <span class="n">mo</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:02d}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;seaice_conc_monthly_&#39;</span><span class="o">+</span><span class="n">hemisphere_code</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="n">yr</span><span class="o">+</span><span class="n">mo</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="n">sat_code</span><span class="o">+</span><span class="s1">&#39;_v04r00.nc&#39;</span>
+        <span class="n">file_urls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">base_url</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">file_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="download-the-data">
+<h2>Download the data<a class="headerlink" href="#download-the-data" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">file_urls</span><span class="p">)):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">file_urls</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    
+    <span class="n">file_name</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">file_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">download_folder</span><span class="p">):</span>
+    
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Downloading &#39;</span><span class="o">+</span><span class="n">file_name</span><span class="o">+</span><span class="s1">&#39; (file &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; of &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">file_urls</span><span class="p">))</span><span class="o">+</span><span class="s1">&#39;)&#39;</span><span class="p">)</span>
+    
+        <span class="n">output_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span><span class="n">file_name</span><span class="p">)</span>
+    
+        <span class="k">with</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">r</span><span class="p">:</span>
+            <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>                   
+                <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">8192</span><span class="p">):</span>   
+                    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">url</span> <span class="o">=</span> <span class="n">file_urls</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">file_name</span> <span class="o">=</span> <span class="n">url</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="k">if</span> <span class="n">file_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">download_folder</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Downloading &#39;</span><span class="o">+</span><span class="n">file_name</span><span class="o">+</span><span class="s1">&#39; (file &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; of &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">file_urls</span><span class="p">))</span><span class="o">+</span><span class="s1">&#39;)&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">output_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span><span class="n">file_name</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;&#39;
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -423,7 +504,7 @@ document.write(`
         },
         kernelOptions: {
             name: "ms274",
-            path: "./physics"
+            path: "./tools"
         },
         predefinedOutput: true
     }
@@ -441,24 +522,6 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../intro.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Ocean Remote Sensing</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="blackbodies.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Blackbody Radiation</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div></div>
   
 </div>
@@ -477,8 +540,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-duality-of-light">The Duality of Light</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">The Electromagnetic Spectrum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-the-modules-for-this-notebook">Import the modules for this notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#define-the-destination-file-path">Define the destination file path</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#make-a-list-of-file-paths">Make a list of file paths</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-the-data">Download the data</a></li>
 </ul>
   </nav></div>
 

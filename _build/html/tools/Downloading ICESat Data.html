@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>The Electromagnetic Spectrum &#8212; Ocean Remote Sensing</title>
+    <title>Downloading Data using NSIDC &#8212; Ocean Remote Sensing</title>
   
   
   
@@ -60,11 +60,9 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'physics/em_spectrum';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tools/Downloading ICESat Data';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Blackbody Radiation" href="blackbodies.html" />
-    <link rel="prev" title="Ocean Remote Sensing" href="../intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -156,9 +154,9 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Physical Principles</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">The Electromagnetic Spectrum</a></li>
-<li class="toctree-l1"><a class="reference internal" href="blackbodies.html">Blackbody Radiation</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../physics/em_spectrum.html">The Electromagnetic Spectrum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/blackbodies.html">Blackbody Radiation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Measurements</span></p>
 <ul class="nav bd-sidenav">
@@ -253,7 +251,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fphysics/em_spectrum.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftools/Downloading ICESat Data.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -283,7 +281,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/physics/em_spectrum.ipynb" target="_blank"
+      <li><a href="../_sources/tools/Downloading ICESat Data.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -365,7 +363,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>The Electromagnetic Spectrum</h1>
+    <h1>Downloading Data using NSIDC</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -375,8 +373,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-duality-of-light">The Duality of Light</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">The Electromagnetic Spectrum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-the-modules-used-in-this-notebook">Import the modules used in this notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-inputs">User Inputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-polygon">Creating the Polygon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#query-nsidc-for-a-list-of-urls-matching-the-criteria">Query NSIDC for a list of URLs matching the criteria</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-the-url-list-to-only-contain-h5-files">Filter the url list to only contain <code class="docutils literal notranslate"><span class="pre">h5</span></code> files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subset-to-the-number-of-files-indicated-above">Subset to the number of files indicated above</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-downloading-script">Run the downloading script</a></li>
 </ul>
             </nav>
         </div>
@@ -388,25 +393,150 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="the-electromagnetic-spectrum">
-<h1>The Electromagnetic Spectrum<a class="headerlink" href="#the-electromagnetic-spectrum" title="Permalink to this headline">#</a></h1>
-<p>Remote sensing of the ocean is primarily focused with the observation of electromagnetic information going to and coming from the ocean surface. With the exception of gravimetry, all other remotely-sensed observations of the ocean use at least one portion of the electromagnetic spectrum.</p>
-<p>In this page, we describe the nature of light and outline the various components on the electromagnetic spectrum.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="downloading-data-using-nsidc">
+<h1>Downloading Data using NSIDC<a class="headerlink" href="#downloading-data-using-nsidc" title="Permalink to this headline">#</a></h1>
+<p>This notebook provides the functionality to download a set of files from the National Snow and Ice Data Center. It is primarily designed for downloading ICESat and/or ICESat-2 data but should theoretically work with any NSIDC data set searchable with the <code class="docutils literal notranslate"><span class="pre">cmr_search</span></code> function from scripts provided by NSIDC.</p>
+<section id="import-the-modules-used-in-this-notebook">
+<h2>Import the modules used in this notebook<a class="headerlink" href="#import-the-modules-used-in-this-notebook" title="Permalink to this headline">#</a></h2>
+<p>This notebook is set up to use functions provided in the download scripts from NSIDC. These functions are provided in a file called <code class="docutils literal notranslate"><span class="pre">nsidc.py</span></code> and should be stored in the same folder as this Jupyter notebook. Import this module below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import the nsidc module</span>
+<span class="kn">import</span> <span class="nn">nsidc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># import the nsidc module</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">nsidc</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;nsidc&#39;
 </pre></div>
 </div>
 </div>
 </div>
-<section id="the-duality-of-light">
-<h2>The Duality of Light<a class="headerlink" href="#the-duality-of-light" title="Permalink to this headline">#</a></h2>
-<p>Under Construction.</p>
 </section>
-<section id="id1">
-<h2>The Electromagnetic Spectrum<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
-<img alt="The Electromagnetic Spectrum" class="align-center" src="../_images/em_spectrum.png" />
+<section id="user-inputs">
+<h2>User Inputs<a class="headerlink" href="#user-inputs" title="Permalink to this headline">#</a></h2>
+<p>Edit this section to define your search query.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define an output folder</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+<span class="c1"># define a short name</span>
+<span class="n">short_name</span> <span class="o">=</span> <span class="s1">&#39;ATL08&#39;</span>
+<span class="c1"># short_name = &#39;ATL03&#39;</span>
+
+<span class="c1"># define a version</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s1">&#39;006&#39;</span>
+
+<span class="c1"># define the start and end times</span>
+<span class="n">time_start</span> <span class="o">=</span> <span class="s1">&#39;2018-10-14T00:00:00Z&#39;</span>
+<span class="n">time_end</span> <span class="o">=</span> <span class="s1">&#39;2023-11-04T18:43:03Z&#39;</span>
+
+<span class="c1"># make a list of points to define the search area</span>
+<span class="c1"># example: Grand Canyon</span>
+<span class="n">min_x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">116.23</span>
+<span class="n">max_x</span> <span class="o">=</span> <span class="o">-</span><span class="mf">114.9</span>
+<span class="n">min_y</span> <span class="o">=</span> <span class="mf">34.9</span>
+<span class="n">max_y</span> <span class="o">=</span> <span class="mf">35.8</span>
+
+<span class="c1"># example: Great Barrier Reef</span>
+<span class="c1"># min_y = -18.4798</span>
+<span class="c1"># min_x = 146.6199</span>
+<span class="c1"># max_y = -18.1567</span>
+<span class="c1"># max_x = 146.9104</span>
+
+<span class="c1"># choose whether to print out the status of the search/download</span>
+<span class="n">quiet</span> <span class="o">=</span> <span class="kc">False</span> 
+
+<span class="c1"># choose whether to force the download (overwrite existing files)</span>
+<span class="n">force</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># cap the number of files to download - particularly useful</span>
+<span class="c1"># when testing files or searching an area</span>
+<span class="n">download_cap</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="c1"># filter by ref track track</span>
+<span class="c1"># filename convetion ATL03_[yyyymmdd][hhmmss]_[ttttccss]_[vvv_rr].h5</span>
+<span class="c1"># tttt = track number</span>
+<span class="c1"># cc = cycle</span>
+<span class="c1"># ss = segment</span>
+<span class="n">filename_filter</span> <span class="o">=</span> <span class="s1">&#39;*_0219*&#39;</span>
+<span class="c1"># filename_filter = &#39;*_0139*&#39;</span>
+<span class="c1"># filename_filter = &#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="creating-the-polygon">
+<h2>Creating the Polygon<a class="headerlink" href="#creating-the-polygon" title="Permalink to this headline">#</a></h2>
+<p>If you’d like to use the search polygon, create it here; otherwise, just use an empty string (first line):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">polygon</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="c1"># polygon += str(min_x)+&#39;,&#39;+str(min_y)+&#39;,&#39;</span>
+<span class="c1"># polygon += str(max_x)+&#39;,&#39;+str(min_y)+&#39;,&#39;</span>
+<span class="c1"># polygon += str(max_x)+&#39;,&#39;+str(max_y)+&#39;,&#39;</span>
+<span class="c1"># polygon += str(min_x)+&#39;,&#39;+str(max_y)+&#39;,&#39;</span>
+<span class="c1"># polygon += str(min_x)+&#39;,&#39;+str(min_y)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="query-nsidc-for-a-list-of-urls-matching-the-criteria">
+<h2>Query NSIDC for a list of URLs matching the criteria<a class="headerlink" href="#query-nsidc-for-a-list-of-urls-matching-the-criteria" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url_list</span> <span class="o">=</span> <span class="n">nsidc</span><span class="o">.</span><span class="n">cmr_search</span><span class="p">(</span><span class="n">short_name</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span> <span class="n">time_start</span><span class="p">,</span> <span class="n">time_end</span><span class="p">,</span>
+                                  <span class="n">polygon</span><span class="o">=</span><span class="n">polygon</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="n">quiet</span><span class="p">,</span> <span class="n">filename_filter</span><span class="o">=</span><span class="n">filename_filter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="filter-the-url-list-to-only-contain-h5-files">
+<h3>Filter the url list to only contain <code class="docutils literal notranslate"><span class="pre">h5</span></code> files<a class="headerlink" href="#filter-the-url-list-to-only-contain-h5-files" title="Permalink to this headline">#</a></h3>
+<p>When you query the files, you may pick up additional files, such as <code class="docutils literal notranslate"><span class="pre">xml</span></code> files. The code block below will filter out extraneous files.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h5_files</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">url_list</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">file_name</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span><span class="o">==</span><span class="s1">&#39;.h5&#39;</span><span class="p">:</span>
+        <span class="n">h5_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="subset-to-the-number-of-files-indicated-above">
+<h3>Subset to the number of files indicated above<a class="headerlink" href="#subset-to-the-number-of-files-indicated-above" title="Permalink to this headline">#</a></h3>
+<p>Use the download cap to limit the number of files that are downloaded.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h5_files</span> <span class="o">=</span> <span class="n">h5_files</span><span class="p">[:</span><span class="n">download_cap</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="run-the-downloading-script">
+<h2>Run the downloading script<a class="headerlink" href="#run-the-downloading-script" title="Permalink to this headline">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">run</span></code> method will download the files found in the PODAAC database. Nothing will print in the Jupyter notebook but the files will show up in the download folder you created above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run the downloading script</span>
+<span class="n">nsidc</span><span class="o">.</span><span class="n">cmr_download</span><span class="p">(</span><span class="n">h5_files</span><span class="p">,</span> <span class="n">data_path</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="n">force</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="n">quiet</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -423,7 +553,7 @@ document.write(`
         },
         kernelOptions: {
             name: "ms274",
-            path: "./physics"
+            path: "./tools"
         },
         predefinedOutput: true
     }
@@ -441,24 +571,6 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="../intro.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Ocean Remote Sensing</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="blackbodies.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Blackbody Radiation</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div></div>
   
 </div>
@@ -477,8 +589,15 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-duality-of-light">The Duality of Light</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">The Electromagnetic Spectrum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-the-modules-used-in-this-notebook">Import the modules used in this notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-inputs">User Inputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-the-polygon">Creating the Polygon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#query-nsidc-for-a-list-of-urls-matching-the-criteria">Query NSIDC for a list of URLs matching the criteria</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-the-url-list-to-only-contain-h5-files">Filter the url list to only contain <code class="docutils literal notranslate"><span class="pre">h5</span></code> files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subset-to-the-number-of-files-indicated-above">Subset to the number of files indicated above</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-downloading-script">Run the downloading script</a></li>
 </ul>
   </nav></div>
 

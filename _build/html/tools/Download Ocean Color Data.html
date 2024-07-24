@@ -1,0 +1,1007 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Download NASA Ocean Color Data &#8212; Ocean Remote Sensing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tools/Download Ocean Color Data';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Ocean Remote Sensing
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Physical Principles</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../physics/em_spectrum.html">The Electromagnetic Spectrum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../physics/blackbodies.html">Blackbody Radiation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Measurements</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../measurements/optical_imagery.html">Optical Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/thermal_infrared.html">Thermal Infrared</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/passive_microwave.html">Passive Microwave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/radar.html">Radars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/laser_altimetry.html">Laser Altimetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../measurements/gravimetry.html">Gravimetry</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Variables</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../variables/chlor_a.html">Chlorophyll-a</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/sst.html">Sea Surface Temperature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/sss.html">Sea Surface Salinity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/sea_ice.html">Sea Ice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/ocean_winds.html">Ocean Winds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/ssh.html">Sea Surface Height</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../variables/bathymetry.html">Bathymetry</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftools/Download Ocean Color Data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/tools/Download Ocean Color Data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Download NASA Ocean Color Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-the-modules-for-this-notebook">Import the modules for this notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-inputs">User inputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-the-data">Download the data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-the-instrument-key-for-the-query">Get the instrument key for the query</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#provide-app-key-or-login-information-for-earth-data-access">Provide app key or login information for Earth Data access.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipe-availible-files-from-search-to-file">Pipe availible files from search to file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-list-of-availible-files-that-are-not-already-in-the-specified-file-path">Get list of availible files that are not already in the specified file path</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#methods-to-download-files-not-in-folder-with-appkey-or-login">Methods to download files not in folder with AppKey or Login</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-files-not-already-in-folder-using-user-choice-for-appkey-or-login">Download files not already in folder using user choice for AppKey or Login</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="download-nasa-ocean-color-data">
+<h1>Download NASA Ocean Color Data<a class="headerlink" href="#download-nasa-ocean-color-data" title="Permalink to this headline">#</a></h1>
+<p>Authors: Tara Parker, Mike Wood</p>
+<p>This notebook is designed to download ocean color data from NASA’s Aqua, Terra, and SeaWIFs satellites. The data is available on the <a class="reference external" href="https://oceandata.sci.gsfc.nasa.gov/">NASA Ocean Color</a> site.</p>
+<section id="import-the-modules-for-this-notebook">
+<h2>Import the modules for this notebook<a class="headerlink" href="#import-the-modules-for-this-notebook" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>       <span class="c1"># Miscellaneous operating system interfaces</span>
+<span class="kn">import</span> <span class="nn">glob</span>     <span class="c1"># Unix style pathname pattern expansion</span>
+<span class="kn">import</span> <span class="nn">requests</span> <span class="c1"># HTTP library for Python</span>
+<span class="kn">import</span> <span class="nn">getpass</span>  <span class="c1"># Portable password input</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="user-inputs">
+<h2>User inputs<a class="headerlink" href="#user-inputs" title="Permalink to this headline">#</a></h2>
+<p>Edit the following parameters to outline which files you woud like to download:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ~~~~~~~~~~~~~~~</span>
+<span class="c1">## FILE OPTIONS</span>
+<span class="c1"># ~~~~~~~~~~~~~~~</span>
+
+<span class="c1"># Set path to a folder to store the data </span>
+<span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+
+<span class="c1"># ~~~~~~~~~~~~~~~</span>
+<span class="c1">## SEARCH OPTIONS</span>
+<span class="c1"># ~~~~~~~~~~~~~~~</span>
+<span class="c1"># SET start date</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;2010-10-01&quot;</span>
+
+<span class="c1"># SET end date </span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s2">&quot;2023-01-01&quot;</span>
+
+<span class="c1"># Resolution</span>
+<span class="c1"># 4km or 9km</span>
+<span class="n">resolution</span> <span class="o">=</span> <span class="s2">&quot;4km&quot;</span>
+
+<span class="c1"># SET Period (use empty string for all periods)</span>
+<span class="c1"># Daily = DAY</span>
+<span class="c1"># Monthly = MO</span>
+<span class="c1">#period = &quot;DAY&quot;</span>
+<span class="n">period_str</span> <span class="o">=</span> <span class="s2">&quot;DAY&quot;</span>
+
+<span class="c1"># Cap the number of files to download</span>
+<span class="c1"># if you want everything, set it to a very large number</span>
+<span class="n">download_cap</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># ~~~~~~~~~~~~~~~</span>
+<span class="c1"># INSTRUMENT OPTS</span>
+<span class="c1"># ~~~~~~~~~~~~~~~</span>
+
+<span class="c1"># SET instrument (aqua, terra, seaWiFs)</span>
+<span class="n">inst_key</span> <span class="o">=</span> <span class="s2">&quot;aqua&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="download-the-data">
+<h2>Download the data<a class="headerlink" href="#download-the-data" title="Permalink to this headline">#</a></h2>
+<p>The cells below will download the data via the following steps:</p>
+<ol class="arabic simple">
+<li><p>Parse the NASA site to get a list of available files from the satellite (eg. AquaMODIS, AquaTERRA SeaWiFS)</p></li>
+<li><p>Store the list of file names as a .txt</p></li>
+<li><p>Get list of availible files that are not in the filepath</p></li>
+<li><p>Download files that aren’t on disk
+<br></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># File name/path for availible file names output (temp file)</span>
+<span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span><span class="s2">&quot;file_list.txt&quot;</span><span class="p">)</span>
+
+<span class="c1"># Dictionary of instruments and their sensor/dt ids (incomplete dictionary)</span>
+<span class="n">instruments</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;aqua&quot;</span><span class="p">:</span> <span class="s2">&quot;sensor_id=7&amp;dtid=1043&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;terra&quot;</span><span class="p">:</span> <span class="s2">&quot;sensor_id=8&amp;dtid=1083&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;seaWiFS&quot;</span><span class="p">:</span> <span class="s2">&quot;sensor_id=6&amp;dtid=1123&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="get-the-instrument-key-for-the-query">
+<h3>Get the instrument key for the query<a class="headerlink" href="#get-the-instrument-key-for-the-query" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Validity check</span>
+<span class="c1"># Check if intruments dictionary contains inst_name as a key</span>
+<span class="k">if</span> <span class="n">inst_key</span> <span class="ow">in</span> <span class="n">instruments</span><span class="p">:</span>
+    <span class="c1"># Get the sensor/dt id from the dictionary based on inst_name</span>
+    <span class="n">instrument</span> <span class="o">=</span> <span class="n">instruments</span><span class="p">[</span><span class="n">inst_key</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid instrument name: &quot;</span> <span class="o">+</span> <span class="n">inst_key</span> <span class="o">+</span> <span class="s2">&quot; not found in instruments dictionary.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="provide-app-key-or-login-information-for-earth-data-access">
+<h3>Provide app key or login information for Earth Data access.<a class="headerlink" href="#provide-app-key-or-login-information-for-earth-data-access" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Provide app key for Earth Data access.</span>
+<span class="k">def</span> <span class="nf">get_appkey</span><span class="p">():</span>
+    <span class="c1"># An appkey can be obtained from:</span>
+    <span class="c1"># https://oceandata.sci.gsfc.nasa.gov/appkey/</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s1">&#39;An appkey can be obtained from: https://oceandata.sci.gsfc.nasa.gov/appkey/</span><span class="se">\n</span><span class="s1">Please enter appkey now.&#39;</span>
+    <span class="p">)</span>
+    <span class="n">appKey</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">(</span><span class="s1">&#39;Enter Appkey: &#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">appKey</span>
+
+
+<span class="c1"># getpass attempts to hide login information from the terminal</span>
+<span class="k">def</span> <span class="nf">get_login</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Please enter your EarthData login information.&#39;</span><span class="p">)</span>
+    <span class="c1">#print(&#39;Enter Username: &#39;)</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter Username:&quot;</span><span class="p">)</span>
+    <span class="c1">#print(&#39;Enter Password: &#39;)</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">(</span><span class="s2">&quot;Enter Password: &quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span>
+
+
+<span class="c1"># ~~~~~~~~~~~~~~~</span>
+<span class="c1"># Get user choice</span>
+<span class="c1"># ~~~~~~~~~~~~~~~</span>
+
+<span class="c1"># Get user choice for appkey or login</span>
+<span class="n">choice</span> <span class="o">=</span> <span class="s2">&quot;0&quot;</span>
+<span class="k">while</span> <span class="n">choice</span> <span class="o">!=</span> <span class="s2">&quot;1&quot;</span> <span class="ow">and</span> <span class="n">choice</span> <span class="o">!=</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span>
+    <span class="c1"># Ask user for appkey or login</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;How would you like to access the data?&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. App Key&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. Login&quot;</span><span class="p">)</span>
+    <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter 1 or 2: &quot;</span><span class="p">)</span>
+
+<span class="c1"># Get appkey/login</span>
+<span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+    <span class="c1"># Provide app key for Earth Data access.</span>
+    <span class="n">appKey</span> <span class="o">=</span> <span class="n">get_appkey</span><span class="p">()</span>
+<span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span>
+    <span class="c1"># Get username and password for Earth Data access.</span>
+    <span class="n">username</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="n">get_login</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>How would you like to access the data?
+1. App Key
+2. Login
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">33</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. App Key&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. Login&quot;</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">33</span>     <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter 1 or 2: &quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span> <span class="c1"># Get appkey/login</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="c1"># Provide app key for Earth Data access.</span>
+
+<span class="nn">File ~/opt/anaconda3/envs/teaching/lib/python3.11/site-packages/ipykernel/kernelbase.py:1190,</span> in <span class="ni">Kernel.raw_input</span><span class="nt">(self, prompt)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1188</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allow_stdin</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1189</span>     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1190</span>     <span class="k">raise</span> <span class="n">StdinNotImplementedError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1191</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_input_request</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1192</span>     <span class="nb">str</span><span class="p">(</span><span class="n">prompt</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1193</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_parent_ident</span><span class="p">[</span><span class="s2">&quot;shell&quot;</span><span class="p">],</span>
+<span class="g g-Whitespace">   </span><span class="mi">1194</span>     <span class="bp">self</span><span class="o">.</span><span class="n">get_parent</span><span class="p">(</span><span class="s2">&quot;shell&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1195</span>     <span class="n">password</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1196</span> <span class="p">)</span>
+
+<span class="ne">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pipe-availible-files-from-search-to-file">
+<h3>Pipe availible files from search to file<a class="headerlink" href="#pipe-availible-files-from-search-to-file" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If the filepath does not exist, create it</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+
+<span class="c1"># Form commands using given search filters</span>
+<span class="k">if</span> <span class="n">period_str</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+    <span class="n">period</span> <span class="o">=</span> <span class="s2">&quot;&amp;period=&quot;</span> <span class="o">+</span> <span class="n">period_str</span>
+<span class="c1"># wget = &quot;wget -q --post-data=\&quot;results_as_file=1&amp;&quot; + instrument + &quot;&amp;sdate=&quot; + start_date + &quot; 00:00:00&amp;edate=&quot; + end_date + &quot; 23:59:59&amp;subType=1&amp;prod_id=chlor_a&amp;resolution_id=&quot; + resolution + period + &quot;\&quot; -O - https://oceandata.sci.gsfc.nasa.gov/api/file_search&quot;</span>
+<span class="n">curl</span> <span class="o">=</span> <span class="s2">&quot;curl -d </span><span class="se">\&quot;</span><span class="s2">results_as_file=1&amp;&quot;</span> <span class="o">+</span> <span class="n">instrument</span> <span class="o">+</span> <span class="s2">&quot;&amp;sdate=&quot;</span> <span class="o">+</span> <span class="n">start_date</span> <span class="o">+</span> <span class="s2">&quot; 00:00:00&amp;edate=&quot;</span> <span class="o">+</span> <span class="n">end_date</span> <span class="o">+</span> <span class="s2">&quot; 23:59:59&amp;subType=1&amp;prod_id=chlor_a&amp;resolution_id=&quot;</span> <span class="o">+</span> <span class="n">resolution</span> <span class="o">+</span> <span class="n">period</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2"> https://oceandata.sci.gsfc.nasa.gov/api/file_search &gt; &quot;</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span><span class="o">+</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span><span class="n">file_name</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">curl</span><span class="p">)</span>
+
+<span class="c1"># Execute command to retrieve list of files and store in file</span>
+<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="n">curl</span><span class="p">)</span>
+
+<span class="c1"># Check the file for &quot;ERROR&quot; or &quot;No Results Found&quot; and print an error message if found</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">&quot;ERROR&quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error encountered while searching for files.</span><span class="se">\n</span><span class="s2">Please verify search parameters and try again.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;No Results Found&quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No results found.</span><span class="se">\n</span><span class="s2">Please verify search parameters and try again.</span><span class="se">\n</span><span class="s2">Exiting program.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="get-list-of-availible-files-that-are-not-already-in-the-specified-file-path">
+<h3>Get list of availible files that are not already in the specified file path<a class="headerlink" href="#get-list-of-availible-files-that-are-not-already-in-the-specified-file-path" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a list of availible files for download</span>
+<span class="k">def</span> <span class="nf">get_all_avail_file_list</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+    <span class="n">file_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;.nc&quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">file_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">file_list</span>
+
+<span class="c1"># Get list of files in filepath</span>
+<span class="k">def</span> <span class="nf">get_files</span><span class="p">(</span><span class="n">fp</span><span class="p">):</span>
+    <span class="c1"># Get file list and sort files by date</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">fp</span> <span class="o">+</span> <span class="s2">&quot;*.nc&quot;</span><span class="p">)</span>
+    <span class="n">files</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">files</span>
+
+<span class="c1"># Strip filepath from file names</span>
+<span class="k">def</span> <span class="nf">format_names</span><span class="p">(</span><span class="n">current_files</span><span class="p">,</span> <span class="n">file_list</span><span class="p">):</span>
+    <span class="c1"># Strip filepath from file names</span>
+    <span class="n">current_file_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">ea</span> <span class="ow">in</span> <span class="n">current_files</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">ea</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span>
+        <span class="n">current_file_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">file_list_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">ea</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">ea</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">file_list_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">current_file_names</span><span class="p">,</span> <span class="n">file_list_names</span>
+
+
+<span class="c1">### Get list of availible files that are not already in the specified file path</span>
+<span class="k">def</span> <span class="nf">get_list_files_not_in_path</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">file_list</span><span class="p">):</span>
+    <span class="c1"># Get list of files in filepath</span>
+    <span class="n">current_files</span> <span class="o">=</span> <span class="n">get_files</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+
+    <span class="c1"># Strip file path from file names</span>
+    <span class="n">current_file_names</span><span class="p">,</span> <span class="n">file_list_names</span> <span class="o">=</span> <span class="n">format_names</span><span class="p">(</span><span class="n">current_files</span><span class="p">,</span> <span class="n">file_list</span><span class="p">)</span>
+
+    <span class="c1"># Get list of files that are not in the specified file path</span>
+    <span class="n">files_needed</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">file_list_names</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">current_file_names</span><span class="p">))</span>
+    <span class="n">files_needed</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">files_needed</span>
+
+
+<span class="c1"># Create a list of availible files for download</span>
+<span class="n">file_list</span> <span class="o">=</span> <span class="n">get_all_avail_file_list</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span><span class="n">file_name</span><span class="p">))</span>
+
+<span class="c1"># Get list of files that are not in the specified file path</span>
+<span class="n">files_needed</span> <span class="o">=</span> <span class="n">get_list_files_not_in_path</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">file_list</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total matching files: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">file_list</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total files to download: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">files_needed</span><span class="p">)))</span>
+
+<span class="n">files_needed</span> <span class="o">=</span> <span class="n">files_needed</span><span class="p">[:</span><span class="n">download_cap</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;With download cap, will download &quot;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">files_needed</span><span class="p">))</span><span class="o">+</span> <span class="s2">&quot; file(s)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="methods-to-download-files-not-in-folder-with-appkey-or-login">
+<h3>Methods to download files not in folder with AppKey or Login<a class="headerlink" href="#methods-to-download-files-not-in-folder-with-appkey-or-login" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Configure a connection to download data from an Earthdata Login enabled server</span>
+<span class="c1">#   https://urs.earthdata.nasa.gov/documentation/for_users/data_access/python</span>
+<span class="k">def</span> <span class="nf">access_data_login</span><span class="p">(</span>
+    <span class="n">username</span><span class="p">,</span>
+    <span class="n">password</span><span class="p">,</span>
+    <span class="n">filepath</span><span class="p">,</span>
+    <span class="n">files_needed</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="c1"># overriding requests.Session.rebuild_auth to mantain headers when redirected</span>
+    <span class="k">class</span> <span class="nc">SessionWithHeaderRedirection</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">):</span>
+        <span class="n">AUTH_HOST</span> <span class="o">=</span> <span class="s1">&#39;urs.earthdata.nasa.gov&#39;</span>
+
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+    <span class="c1"># Overrides from the library to keep headers when redirected to or from</span>
+    <span class="c1"># the NASA auth host.</span>
+
+        <span class="k">def</span> <span class="nf">rebuild_auth</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prepared_request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+            <span class="n">headers</span> <span class="o">=</span> <span class="n">prepared_request</span><span class="o">.</span><span class="n">headers</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="n">prepared_request</span><span class="o">.</span><span class="n">url</span>
+
+            <span class="k">if</span> <span class="s1">&#39;Authorization&#39;</span> <span class="ow">in</span> <span class="n">headers</span><span class="p">:</span>
+                <span class="n">original_parsed</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">urlparse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+                <span class="n">redirect_parsed</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">urlparse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="p">(</span>
+                        <span class="n">original_parsed</span><span class="o">.</span><span class="n">hostname</span> <span class="o">!=</span> <span class="n">redirect_parsed</span><span class="o">.</span><span class="n">hostname</span>
+                <span class="p">)</span> <span class="ow">and</span> <span class="n">redirect_parsed</span><span class="o">.</span><span class="n">hostname</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">AUTH_HOST</span> <span class="ow">and</span> <span class="n">original_parsed</span><span class="o">.</span><span class="n">hostname</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">AUTH_HOST</span><span class="p">:</span>
+                    <span class="k">del</span> <span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Authorization&#39;</span><span class="p">]</span>
+
+            <span class="k">return</span>
+
+    <span class="c1"># Progess Reporting</span>
+    <span class="n">total_files</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">files_needed</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">prog</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="c1"># create session with the user credentials that will be used to authenticate access to the data</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">SessionWithHeaderRedirection</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+
+    <span class="c1"># list to hold the names of the files that could not be downloaded</span>
+    <span class="n">bad_files</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># loop over the files and submit a request for each</span>
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files_needed</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="n">file</span><span class="p">)):</span>
+
+            <span class="c1"># build the url from the file name of the file we wish to retrieve</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://oceandata.sci.gsfc.nasa.gov/ob/getfile/&quot;</span> <span class="o">+</span> <span class="n">file</span>
+
+            <span class="c1"># extract the filename from the url to be used when saving the file</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">url</span><span class="p">[</span><span class="n">url</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:]</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># submit the request using the session</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">):</span>
+                    <span class="c1"># Progress reporting</span>
+                    <span class="n">prog</span> <span class="o">=</span> <span class="s2">&quot;Progress: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; of &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">total_files</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Status: &quot;</span><span class="p">,</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+
+                <span class="c1"># raise an exception in case of http errors</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+                <span class="c1"># save the file</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="n">filename</span><span class="p">),</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">):</span>
+                        <span class="n">fd</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+
+            <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">bad_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+                <span class="c1"># handle any errors here</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># Print report of files that failed to download</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bad_files</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All files downloaded successfully&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bad_files</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to download &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bad_files</span><span class="p">)),</span> <span class="s2">&quot; files.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A list of failed files are saved in &quot;</span><span class="p">,</span>
+              <span class="n">filepath</span> <span class="o">+</span> <span class="s2">&quot;failed_files.txt&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Files that failed to download: &quot;</span><span class="p">,</span> <span class="n">bad_files</span><span class="p">)</span>
+
+        <span class="c1"># Store the bad files in a text file with each file on a seperate line, overwriting the file if it already exists</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span> <span class="o">+</span> <span class="s2">&quot;failed_files.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">bad_files</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">s</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">bad_files</span>
+
+
+<span class="c1">### Download files not in folder</span>
+<span class="k">def</span> <span class="nf">access_data_appkey</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">files_needed</span><span class="p">,</span> <span class="n">appKey</span><span class="p">):</span>
+
+    <span class="c1"># Create file path if it does not exist</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+
+    <span class="c1"># Progess Reporting</span>
+    <span class="n">total_files</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">files_needed</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">prog</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="c1"># Download files</span>
+    <span class="n">bad_files</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">files_needed</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="n">f</span><span class="p">)):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># submit the request</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://oceandata.sci.gsfc.nasa.gov/ob/getfile/&quot;</span> <span class="o">+</span> <span class="n">f</span> <span class="o">+</span> <span class="s2">&quot;?appkey=&quot;</span> <span class="o">+</span> <span class="n">appKey</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="c1"># print status or progress</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">):</span>
+                    <span class="c1"># Progress reporting</span>
+                    <span class="n">prog</span> <span class="o">=</span> <span class="s2">&quot;Progress: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; of &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">total_files</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\r</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>  <span class="c1"># Print status code if not 200</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Status: &quot;</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span><span class="p">)</span>
+
+                <span class="c1"># raise an exception in case of http errors</span>
+                <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+                <span class="c1"># save the file</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span><span class="n">f</span><span class="p">),</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fd</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">):</span>
+                        <span class="n">fd</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+
+            <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">HTTPError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">bad_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                <span class="c1"># handle any errors here</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+        <span class="c1"># Progress reporting</span>
+        <span class="c1">#prog = str(i) + &quot; of &quot; + str(total_files)</span>
+        <span class="c1">#print(prog, end=&quot;\r&quot;)</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># Print report of files that failed to download</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bad_files</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All files downloaded successfully&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bad_files</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Failed to download &quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bad_files</span><span class="p">)),</span> <span class="s2">&quot; files.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;A list of failed files are saved in &quot;</span><span class="p">,</span>
+              <span class="n">filepath</span> <span class="o">+</span> <span class="s2">&quot;failed_files.txt&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Files that failed to download: &quot;</span><span class="p">,</span> <span class="n">bad_files</span><span class="p">)</span>
+
+        <span class="c1"># Store the bad files in a text file with each file on a seperate line, overwriting the file if it already exists</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span> <span class="o">+</span> <span class="s2">&quot;failed_files.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fi</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">bad_files</span><span class="p">:</span>
+                <span class="n">fi</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">s</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">bad_files</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="download-files-not-already-in-folder-using-user-choice-for-appkey-or-login">
+<h3>Download files not already in folder using user choice for AppKey or Login<a class="headerlink" href="#download-files-not-already-in-folder-using-user-choice-for-appkey-or-login" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download files not in folder using user choice for appkey or login</span>
+<span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+    <span class="c1"># Download files not in folder using app key</span>
+    <span class="n">bad_files</span> <span class="o">=</span> <span class="n">access_data_appkey</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">files_needed</span><span class="p">,</span> <span class="n">appKey</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bad_files</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">repeat</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>
+            <span class="s2">&quot;Would you like to try to download these files again? (y/n): &quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">repeat</span> <span class="o">==</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span>
+            <span class="c1"># Download files not in folder using login</span>
+            <span class="n">bad_files</span> <span class="o">=</span> <span class="n">access_data_appkey</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">bad_files</span><span class="p">,</span> <span class="n">appKey</span><span class="p">)</span>
+
+<span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span>
+    <span class="c1"># Download files not in folder using login</span>
+    <span class="n">bad_files</span> <span class="o">=</span> <span class="n">access_data_login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">files_needed</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bad_files</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">repeat</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>
+            <span class="s2">&quot;Would you like to try to download these files again? (y/n): &quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">repeat</span> <span class="o">==</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span>
+            <span class="c1"># Download files not in folder using login</span>
+            <span class="n">bad_files</span> <span class="o">=</span> <span class="n">access_data_login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span>
+                                            <span class="n">bad_files</span><span class="p">)</span>
+
+<span class="c1"># Delete file list</span>
+<span class="c1">#os.remove(file)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following links are provided for reference:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://oceandata.sci.gsfc.nasa.gov/api/file_search_help">File Search: Using the API</a></p></li>
+<li><p><a class="reference external" href="https://oceandata.sci.gsfc.nasa.gov/api/file_search/">OceanData API file search GUI</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tools"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#import-the-modules-for-this-notebook">Import the modules for this notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-inputs">User inputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-the-data">Download the data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-the-instrument-key-for-the-query">Get the instrument key for the query</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#provide-app-key-or-login-information-for-earth-data-access">Provide app key or login information for Earth Data access.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pipe-availible-files-from-search-to-file">Pipe availible files from search to file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-list-of-availible-files-that-are-not-already-in-the-specified-file-path">Get list of availible files that are not already in the specified file path</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#methods-to-download-files-not-in-folder-with-appkey-or-login">Methods to download files not in folder with AppKey or Login</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-files-not-already-in-folder-using-user-choice-for-appkey-or-login">Download files not already in folder using user choice for AppKey or Login</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mike Wood
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

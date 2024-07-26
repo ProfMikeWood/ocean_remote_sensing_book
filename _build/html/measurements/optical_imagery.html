@@ -352,7 +352,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -368,6 +370,22 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#images-and-data">Images and Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-images">Digital Images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optical-satellite-images">Optical Satellite Images</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optical-imagery-satellites">Optical Imagery Satellites</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-landsat-program">The Landsat Program</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -380,6 +398,131 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="optical-imagery">
 <h1>Optical Imagery<a class="headerlink" href="#optical-imagery" title="Permalink to this headline">#</a></h1>
 <p>This resource will be updated on 8/28, 9/4, and 9/11.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Rectangle</span><span class="p">,</span> <span class="n">Arrow</span>
+<span class="kn">import</span> <span class="nn">matplotlib.dates</span> <span class="k">as</span> <span class="nn">mdates</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="images-and-data">
+<h2>Images and Data<a class="headerlink" href="#images-and-data" title="Permalink to this headline">#</a></h2>
+<section id="digital-images">
+<h3>Digital Images<a class="headerlink" href="#digital-images" title="Permalink to this headline">#</a></h3>
+<p>Images stored in a digital format are stored with 3-4 numbers describing the constituent colors that make up a given color we see. For example, consider the following image of the progress pride flag, which we read in with numpy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read in the image</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../images/progress_pride_flag.jpg&#39;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+
+<span class="c1"># show the image with its size</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Image Shape: &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">im</span><span class="p">)))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bd5df07368d330dfb3dc313e17980783909a02f9503a615e73ef7e8c226f8869.png" src="../_images/bd5df07368d330dfb3dc313e17980783909a02f9503a615e73ef7e8c226f8869.png" />
+</div>
+</div>
+<p>As we can see in the plot above, the <code class="docutils literal notranslate"><span class="pre">progress_pride_flag.jpg</span></code> image is stored with three dimensions: the number of pixels in the x- and y-directions (586 and 352, respectively) as well as a third dimension for each consitutent color. For <code class="docutils literal notranslate"><span class="pre">jpg</span></code> images, these layers correspond to the red, green, and blue colors used to make up the colors on a computer screen. Other coloring schemes use different types of color combinations - for example, printers use cyan, maroon, and yellow to construct colors in a similar fashion. We can observe these constituent colors by plotting their intensity individually:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">],</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys_r&#39;</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">254</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">pad</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span><span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Red&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">],</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys_r&#39;</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">254</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">pad</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span><span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Green&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">[:,:,</span><span class="mi">2</span><span class="p">],</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys_r&#39;</span><span class="p">,</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">254</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">C</span><span class="p">,</span><span class="n">pad</span><span class="o">=</span><span class="mf">0.04</span><span class="p">,</span><span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;horizontal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Blue&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4c28b29a7579edc34acf2a74e0c729766ee3c24f3fd4811d9bd74a14060471d7.png" src="../_images/4c28b29a7579edc34acf2a74e0c729766ee3c24f3fd4811d9bd74a14060471d7.png" />
+</div>
+</div>
+</section>
+<section id="optical-satellite-images">
+<h3>Optical Satellite Images<a class="headerlink" href="#optical-satellite-images" title="Permalink to this headline">#</a></h3>
+<p>Much like digital images, satellite images are composed of separate layers called “bands” that store information about a given “scene”. However, unlink digital images using red, green, and blue pixel values to reconstruct a given image, optical satellite images are composed of measured reflectances at different wavelengths of the electro-magnetic spectrum.</p>
+</section>
+</section>
+<section id="optical-imagery-satellites">
+<h2>Optical Imagery Satellites<a class="headerlink" href="#optical-imagery-satellites" title="Permalink to this headline">#</a></h2>
+<p>Optical imagery is one of the most common types of data collected by satellites. As a result, there are many different types of optical data with varying resolution and purposes. Here, we detail two satellite programs: the U.S. Landsat program and the European Sentinel program.</p>
+<p>Under construction.</p>
+<section id="the-landsat-program">
+<h3>The Landsat Program<a class="headerlink" href="#the-landsat-program" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define the landsat program dates</span>
+<span class="n">sat_dates</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Landsat 1&#39;</span><span class="p">:(</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;1972-01-01&#39;</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;1978-01-21&#39;</span><span class="p">)),</span>
+             <span class="s1">&#39;Landsat 2&#39;</span><span class="p">:(</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;1975-01-01&#39;</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;1982-01-21&#39;</span><span class="p">)),</span>
+             <span class="s1">&#39;Landsat 3&#39;</span><span class="p">:(</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;1978-01-01&#39;</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;1983-01-21&#39;</span><span class="p">)),</span>
+             <span class="s1">&#39;Landsat 4&#39;</span><span class="p">:(</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;1982-01-01&#39;</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;1993-01-21&#39;</span><span class="p">)),</span>
+             <span class="s1">&#39;Landsat 5&#39;</span><span class="p">:(</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;1984-01-01&#39;</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;2013-01-21&#39;</span><span class="p">)),</span>
+             <span class="s1">&#39;Landsat 7&#39;</span><span class="p">:(</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;1999-01-01&#39;</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;2022-01-21&#39;</span><span class="p">)),</span>
+             <span class="s1">&#39;Landsat 8&#39;</span><span class="p">:(</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;2013-01-01&#39;</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;2024-12-31&#39;</span><span class="p">)),</span>
+             <span class="s1">&#39;Landsat 9&#39;</span><span class="p">:(</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;2021-01-01&#39;</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;2024-12-31&#39;</span><span class="p">))}</span>
+<span class="n">sat_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sat_dates</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+<span class="c1"># make a figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sat_names</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)))</span>
+
+<span class="c1"># plot the date boxes</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sat_names</span><span class="p">)):</span>
+    <span class="n">launch_date</span> <span class="o">=</span> <span class="n">sat_dates</span><span class="p">[</span><span class="n">sat_names</span><span class="p">[</span><span class="n">s</span><span class="p">]][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">decommission_date</span> <span class="o">=</span> <span class="n">sat_dates</span><span class="p">[</span><span class="n">sat_names</span><span class="p">[</span><span class="n">s</span><span class="p">]][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">sat_rect</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">((</span><span class="n">launch_date</span><span class="p">,</span><span class="n">s</span><span class="o">*</span><span class="mf">0.5</span><span class="p">),</span>
+                          <span class="n">decommission_date</span> <span class="o">-</span> <span class="n">launch_date</span><span class="p">,</span>
+                          <span class="mf">0.25</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;darkblue&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">sat_rect</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">decommission_date</span><span class="o">&lt;</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;2017-02-01&#39;</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">decommission_date</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="s1">&#39;W&#39;</span><span class="p">),</span> <span class="n">s</span><span class="o">*</span><span class="mf">0.5</span><span class="o">+</span><span class="mf">0.125</span><span class="p">,</span> <span class="n">sat_names</span><span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">launch_date</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">timedelta64</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="s1">&#39;W&#39;</span><span class="p">),</span> <span class="n">s</span><span class="o">*</span><span class="mf">0.5</span><span class="o">+</span><span class="mf">0.125</span><span class="p">,</span> <span class="n">sat_names</span><span class="p">[</span><span class="n">s</span><span class="p">],</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="c1"># format the axes</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;1972-02-01&#39;</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">datetime64</span><span class="p">(</span><span class="s1">&#39;2025-01-01&#39;</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sat_names</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="o">-</span><span class="mf">0.25</span><span class="p">])</span>
+<span class="n">myFmt</span> <span class="o">=</span> <span class="n">mdates</span><span class="o">.</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%Y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">myFmt</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Landsat Program Satellites&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7e332e9cdc0d605fa54abfe8e51e2b601027d22f09ba95e59cc7b9ce2925967b.png" src="../_images/7e332e9cdc0d605fa54abfe8e51e2b601027d22f09ba95e59cc7b9ce2925967b.png" />
+</div>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -440,6 +583,28 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#images-and-data">Images and Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#digital-images">Digital Images</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optical-satellite-images">Optical Satellite Images</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optical-imagery-satellites">Optical Imagery Satellites</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-landsat-program">The Landsat Program</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -18,6 +18,7 @@ parts:
     - file: measurements/gravimetry
   - caption: Variables
     chapters:
+    - file: variables/ndis
     - file: variables/chlor_a
     - file: variables/sst
     - file: variables/sss

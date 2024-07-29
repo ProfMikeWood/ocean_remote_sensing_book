@@ -1,5 +1,11 @@
-# MacOS
+# Ignore data files
+data/*
+
+# Mac file
 .DS_Store
+
+
+# Everything below here is the standard python template
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

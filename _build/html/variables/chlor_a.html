@@ -64,7 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Sea Surface Temperature" href="sst.html" />
-    <link rel="prev" title="Gravimetry" href="../measurements/gravimetry.html" />
+    <link rel="prev" title="Normalized Difference Indices" href="ndis.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -155,10 +155,12 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Physical Principles</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Fundamentals</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../physics/em_spectrum.html">The Electromagnetic Spectrum</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../physics/blackbodies.html">Blackbody Radiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/em_spectrum.html">The Electromagnetic Spectrum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/blackbodies.html">Blackbody Radiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/orbits.html">Orbits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamentals/atmospheric_transmission.html">Atmospheric Transmission</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Measurements</span></p>
 <ul class="nav bd-sidenav">
@@ -171,6 +173,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Variables</span></p>
 <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ndis.html">Normalized Difference Indices</a></li>
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Chlorophyll-a</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sst.html">Sea Surface Temperature</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sss.html">Sea Surface Salinity</a></li>
@@ -375,8 +379,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-chlorophyll-a-absorption-spectrum">The Chlorophyll-a Absorption Spectrum</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-water-absorption-spectrum">The Water Absorption Spectrum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-basis">Physical Basis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-chlorophyll-a-absorption-spectrum">The Chlorophyll-a Absorption Spectrum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-water-absorption-spectrum">The Water Absorption Spectrum</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chlorophyll-a-algorithms">Chlorophyll-a Algorithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chlorophyll-a-products">Chlorophyll-a Products</a></li>
 </ul>
             </nav>
         </div>
@@ -399,8 +408,10 @@ document.write(`
 </div>
 </div>
 </div>
+<section id="physical-basis">
+<h2>Physical Basis<a class="headerlink" href="#physical-basis" title="Permalink to this headline">#</a></h2>
 <section id="the-chlorophyll-a-absorption-spectrum">
-<h2>The Chlorophyll-a Absorption Spectrum<a class="headerlink" href="#the-chlorophyll-a-absorption-spectrum" title="Permalink to this headline">#</a></h2>
+<h3>The Chlorophyll-a Absorption Spectrum<a class="headerlink" href="#the-chlorophyll-a-absorption-spectrum" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read in the spectrum</span>
@@ -423,10 +434,10 @@ document.write(`
 <img alt="../_images/44bb9b5a030da43540983473598f69b3696c7f5fd8bec9b89ed7ab36a3fc9b2b.png" src="../_images/44bb9b5a030da43540983473598f69b3696c7f5fd8bec9b89ed7ab36a3fc9b2b.png" />
 </div>
 </div>
-<p>The data from the above plot was obtained from <span id="id1">Prahl and Jacques [<a class="reference internal" href="../references.html#id2" title="Scott Prahl and Steve Jacques. Absorption spectra of different constituents. 2018. data retrieved from Oregon Medical Laser Center, https://omlc.org/.">2018</a>]</span>.</p>
+<p>The data from the above plot was obtained from <span id="id1">Prahl and Jacques [<a class="reference internal" href="../references.html#id4" title="Scott Prahl and Steve Jacques. Absorption spectra of different constituents. 2018. data retrieved from Oregon Medical Laser Center, https://omlc.org/.">2018</a>]</span>.</p>
 </section>
 <section id="the-water-absorption-spectrum">
-<h2>The Water Absorption Spectrum<a class="headerlink" href="#the-water-absorption-spectrum" title="Permalink to this headline">#</a></h2>
+<h3>The Water Absorption Spectrum<a class="headerlink" href="#the-water-absorption-spectrum" title="Permalink to this headline">#</a></h3>
 <p>We can compare the above plot of absorption for chlorophyll-a to that of water to visualize the differences:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -450,6 +461,13 @@ document.write(`
 <img alt="../_images/e9c3a084c09cd7dea6934a9130d9c3138f4ed949e5a3303e8cc0cce944487034.png" src="../_images/e9c3a084c09cd7dea6934a9130d9c3138f4ed949e5a3303e8cc0cce944487034.png" />
 </div>
 </div>
+</section>
+</section>
+<section id="chlorophyll-a-algorithms">
+<h2>Chlorophyll-a Algorithms<a class="headerlink" href="#chlorophyll-a-algorithms" title="Permalink to this headline">#</a></h2>
+</section>
+<section id="chlorophyll-a-products">
+<h2>Chlorophyll-a Products<a class="headerlink" href="#chlorophyll-a-products" title="Permalink to this headline">#</a></h2>
 </section>
 </section>
 
@@ -485,12 +503,12 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../measurements/gravimetry.html"
+       href="ndis.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Gravimetry</p>
+        <p class="prev-next-title">Normalized Difference Indices</p>
       </div>
     </a>
     <a class="right-next"
@@ -520,8 +538,13 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-chlorophyll-a-absorption-spectrum">The Chlorophyll-a Absorption Spectrum</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-water-absorption-spectrum">The Water Absorption Spectrum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#physical-basis">Physical Basis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-chlorophyll-a-absorption-spectrum">The Chlorophyll-a Absorption Spectrum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-water-absorption-spectrum">The Water Absorption Spectrum</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chlorophyll-a-algorithms">Chlorophyll-a Algorithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chlorophyll-a-products">Chlorophyll-a Products</a></li>
 </ul>
   </nav></div>
 

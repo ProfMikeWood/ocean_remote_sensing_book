@@ -4,10 +4,12 @@
 format: jb-book
 root: intro
 parts: 
-  - caption: Physical Principles
+  - caption: Fundamentals
     chapters:
-    - file: physics/em_spectrum
-    - file: physics/blackbodies
+    - file: fundamentals/em_spectrum
+    - file: fundamentals/blackbodies
+    - file: fundamentals/orbits
+    - file: fundamentals/atmospheric_transmission
   - caption: Measurements
     chapters:
     - file: measurements/optical_imagery

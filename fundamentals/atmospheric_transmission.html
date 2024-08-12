@@ -60,6 +60,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'fundamentals/atmospheric_transmission';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -356,7 +358,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -372,6 +376,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#total-atmospheric-tranmission">Total Atmospheric Tranmission</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transmission-by-atmospheric-constituents">Transmission by Atmospheric Constituents</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -383,29 +396,44 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="atmospheric-transmission">
 <h1>Atmospheric Transmission<a class="headerlink" href="#atmospheric-transmission" title="Permalink to this headline">#</a></h1>
-<p>An important consideration for remote sensing is the proportion of total electromagnetic radiation that can make it through Earth’s atmosphere. Only the portion of the electromagnetic spectrum which are largely transmissible through the atmosphere can be used for remote sensing observations.</p>
-<p>The transmission through the atmopshere is largely dependent on which gaeses are present and how much electromagnatic radition they transmit.</p>
+<p>An important consideration for remote sensing is the proportion of total electromagnetic radiation that can make it through Earth’s atmosphere. Only the wavelengths of the electromagnetic spectrum which are largely transmissible through the atmosphere can be used for remote sensing observations.</p>
+<p>To quantify transmission, we’ll first define the cumulative extinction of electromagnetic radiation as it passes through the atmosphere, defined as</p>
+<div class="math notranslate nohighlight">
+\[
+L(z) = L_0\text{exp}\left[-\int_0^{z_H} \kappa_E(z) \, dz \right]
+\]</div>
+<p><span class="math notranslate nohighlight">\(L\)</span> is the irradiance and <span class="math notranslate nohighlight">\(\kappa_E\)</span>, in units of m<span class="math notranslate nohighlight">\(^{-1}\)</span>, is the extinction coeffcient for a given gas that accounts for both absorption and scattering. When integrated over the entire atmopshere, the term in the exponential, i.e.</p>
+<div class="math notranslate nohighlight">
+\[
+\tau = \int_0^{z_H} \kappa_E(z) \, dz
+\]</div>
+<p>is defined as the <em>optical depth</em> in the atmosphere. Note that <span class="math notranslate nohighlight">\(L\)</span> is a function of wavelength.</p>
+<p>The <strong>transmittance</strong> is defined in terms of the optical depth as</p>
+<div class="math notranslate nohighlight">
+\[
+t = e^{-\tau}
+\]</div>
+<p>Note that since optical depth has values in the range <span class="math notranslate nohighlight">\([0, \infty)\)</span>, transmittance has values in the range <span class="math notranslate nohighlight">\([0, 1]\)</span>, or between 0% and 100%.</p>
 <p>First, this page will summarize the total atmopsheric transmission. Then, we will break down the total transmission by each gas.</p>
+<p>Since we’ll be making several plots, begin by import modules to read, process, and plot data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">netCDF4</span> <span class="k">as</span> <span class="nn">nc4</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Rectangle</span>
-<span class="kn">import</span> <span class="nn">netCDF4</span> <span class="k">as</span> <span class="nn">nc4</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>First, read in a dataset generated using Py6S, the Python-wrapped version of 6S model:</p>
+<p>Next, read in a dataset generated using <span class="xref myst">Py6S</span>, the Python-wrapped version of <span class="xref myst">6S</span> model used to quantify reflection, absorption, and transmission of electromagnetic radiation for wavelengths in the UV, visible, and shortwave infrared regions of the spectrum:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the atmospheric transmission data</span>
 <span class="n">ds</span> <span class="o">=</span> <span class="n">nc4</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="s1">&#39;../data/molecular_transmission.nc&#39;</span><span class="p">)</span>
-<span class="n">water_vapor</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;water_vapor&#39;</span><span class="p">][:]</span>
+<span class="n">h2o</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;water_vapor&#39;</span><span class="p">][:]</span>
 <span class="n">co2</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;carbon_dioxide&#39;</span><span class="p">][:]</span>
-<span class="n">oxygen</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;oxygen&#39;</span><span class="p">][:]</span>
-<span class="n">ozone</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;ozone&#39;</span><span class="p">][:]</span>
+<span class="n">o2</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;oxygen&#39;</span><span class="p">][:]</span>
+<span class="n">o3</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;ozone&#39;</span><span class="p">][:]</span>
 <span class="n">n2o</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;nitrous_oxide&#39;</span><span class="p">][:]</span>
 <span class="n">ch4</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;methane&#39;</span><span class="p">][:]</span>
 <span class="n">rayleigh</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;rayleigh_scattering&#39;</span><span class="p">][:]</span>
@@ -416,28 +444,199 @@ document.write(`
 </div>
 </div>
 </div>
-<p>Next, plot the total transmission of electromagnetic radiation by the atmosphere:</p>
+<p>Finally, with a look to the many plots we will explore on this page, define a generic plotting function that can be used many times over:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a figure</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_transmission_figure</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">transmission</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">),</span>  <span class="n">transmission</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">xticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">xticks</span><span class="p">)</span>
+    <span class="n">xtickslabels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;200&#39;</span><span class="p">,</span> <span class="s1">&#39;380&#39;</span><span class="p">,</span> <span class="s1">&#39;550&#39;</span><span class="p">,</span> <span class="s1">&#39;700&#39;</span><span class="p">,</span> <span class="s1">&#39;1000&#39;</span><span class="p">,</span> <span class="s1">&#39;2000&#39;</span><span class="p">,</span> <span class="s1">&#39;3000&#39;</span><span class="p">,</span> <span class="s1">&#39;4000&#39;</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">xtickslabels</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Atmospheric Transmission (%)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Wavelength (nm)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">105</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="total-atmospheric-tranmission">
+<h2>Total Atmospheric Tranmission<a class="headerlink" href="#total-atmospheric-tranmission" title="Permalink to this headline">#</a></h2>
+<p>Using the plotting function above, the total transmission by gases in the atmosphere can be visualized as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_transmission_figure</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">gas</span><span class="p">,</span>
+                         <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Total Gaseous Transmission&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c3d8b5c6f6ee7ec80903e6b4d50a0a6d7c6ac04d55c6d5bd7a1404095c2160aa.png" src="../_images/c3d8b5c6f6ee7ec80903e6b4d50a0a6d7c6ac04d55c6d5bd7a1404095c2160aa.png" />
+</div>
+</div>
+<p>As we can see, there are various parts of the electromagnetic spectrum in which no light makes it through the atmosphere. For example, there is a large region near in the UV portion of the spectrum between 200-300 in which there is very little transmission. Similarly, there are other portions of the spectrum where there are <strong>atmospheric windows</strong> - portions of the spectrum in which nearly all light is transmissible through the atmopshere.</p>
+<p>In addition to molecular absorption, gases also scatter light in the atmosphere. The predominant form of scatter in the atmosphere is <em>Rayleigh scattering</em> which can be visualized as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_transmission_figure</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">rayleigh</span><span class="p">,</span>
+                         <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Rayleigh Scattering Transmission&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8b10d321a86a284452ff22f23adee2c8c57ec49ec43759751944b04eadbf1e6c.png" src="../_images/8b10d321a86a284452ff22f23adee2c8c57ec49ec43759751944b04eadbf1e6c.png" />
+</div>
+</div>
+<p>In this curve, we see that light at shorter wavelengths is scattered more strongly than those at longer wavelengths.</p>
+<p>To determine the total amount of radiation passing downward through the atmosphere, we can multiply the atmospheric transmission by the total radiation from the sun. Approximating the sun as a blackbody, <a class="reference external" href="https://profmikewood.github.io/ocean_remote_sensing_book/intro.html">Planck’s Law</a> allows us to estimate the total radiation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Planck&#39;s Law</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">5525</span>
+<span class="n">kB</span> <span class="o">=</span> <span class="mf">1.380649e-23</span>
+<span class="n">h</span> <span class="o">=</span> <span class="mf">6.626e-34</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">299792458</span>
+<span class="n">Fp</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">wavelengths</span><span class="o">/</span><span class="mf">1e6</span><span class="p">)</span><span class="o">**</span><span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">h</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="p">((</span><span class="n">wavelengths</span><span class="o">/</span><span class="mf">1e6</span><span class="p">)</span><span class="o">*</span><span class="n">kB</span><span class="o">*</span><span class="n">T</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># modify to account fot earth-sun difference</span>
+<span class="n">r_S</span> <span class="o">=</span> <span class="mf">6.96e8</span> <span class="c1"># radius of sun</span>
+<span class="n">d_ES</span> <span class="o">=</span> <span class="mf">1.5e14</span> <span class="c1"># distance from Earth to Sun</span>
+<span class="n">Fp_Earth</span> <span class="o">=</span> <span class="n">Fp</span><span class="o">*</span><span class="p">(</span><span class="n">r_S</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">d_ES</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># make a figure</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">),</span>  <span class="n">gas</span><span class="o">*</span><span class="n">rayleigh</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">),</span>  <span class="n">Fp_Earth</span><span class="o">*</span><span class="n">gas</span><span class="o">*</span><span class="n">rayleigh</span><span class="p">)</span>
 <span class="n">xticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">xticks</span><span class="p">)</span>
 <span class="n">xtickslabels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;200&#39;</span><span class="p">,</span> <span class="s1">&#39;380&#39;</span><span class="p">,</span> <span class="s1">&#39;550&#39;</span><span class="p">,</span> <span class="s1">&#39;700&#39;</span><span class="p">,</span> <span class="s1">&#39;1000&#39;</span><span class="p">,</span> <span class="s1">&#39;2000&#39;</span><span class="p">,</span> <span class="s1">&#39;3000&#39;</span><span class="p">,</span> <span class="s1">&#39;4000&#39;</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">xtickslabels</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Atmospheric Transmission (%)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Total Irradiance at Earth Surface (W/m$^2/nm$)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Wavelength (nm)&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a9bfc98372cd96625aa82dfa2a0fad37f40ba1355b26a5d60e53cc4a3bc1a6c7.png" src="../_images/a9bfc98372cd96625aa82dfa2a0fad37f40ba1355b26a5d60e53cc4a3bc1a6c7.png" />
+<img alt="../_images/f1745cffcc4d944d7075471a82b0b2bf857075d43419761127e663cd2defe039.png" src="../_images/f1745cffcc4d944d7075471a82b0b2bf857075d43419761127e663cd2defe039.png" />
 </div>
 </div>
-<p>As we can see, there are various parts of the electromagnetic spectrum in which no light makes it through the atmosphere. For example, there is a large region near in the UV portion of the spectrum between 200-300 in which there is very little transmission. Similarly, there are other portions of the spectrum where are <strong>atmospheric windows</strong> - portions of the spectrum in which nearly all light is transmissible through the atmopshere.</p>
+</section>
+<section id="transmission-by-atmospheric-constituents">
+<h2>Transmission by Atmospheric Constituents<a class="headerlink" href="#transmission-by-atmospheric-constituents" title="Permalink to this headline">#</a></h2>
+<p>As we saw above the transmittance through the atmosphere is largely dependent on which gases are present and how much electromagnatic radiation they transmit (as encapsulated in the <span class="math notranslate nohighlight">\(\kappa_E\)</span> term). Ten of the main gases in the atmopshere are as follows:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Gas Name</p></th>
+<th class="head"><p>Concentration</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Nitrogen (N<span class="math notranslate nohighlight">\(_2\)</span>)</p></td>
+<td><p>78%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Oxygen (O<span class="math notranslate nohighlight">\(_2\)</span>)</p></td>
+<td><p>21%</p></td>
+</tr>
+<tr class="row-even"><td><p>Argon (Ar)</p></td>
+<td><p>0.93%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Carbon Dioxide (CO<span class="math notranslate nohighlight">\(_2\)</span>)</p></td>
+<td><p>420 ppm (and rising)</p></td>
+</tr>
+<tr class="row-even"><td><p>Water Vapor (H<span class="math notranslate nohighlight">\(_2\)</span>O)</p></td>
+<td><p>Variable</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ozone (O<span class="math notranslate nohighlight">\(_3\)</span>)</p></td>
+<td><p>Variable</p></td>
+</tr>
+<tr class="row-even"><td><p>Nitrous Oxide (N<span class="math notranslate nohighlight">\(_2\)</span>O)</p></td>
+<td><p>X ppm</p></td>
+</tr>
+<tr class="row-odd"><td><p>Methane (CH<span class="math notranslate nohighlight">\(_4\)</span>)</p></td>
+<td><p>X ppm</p></td>
+</tr>
+<tr class="row-even"><td><p>Carbon Monoxide (N<span class="math notranslate nohighlight">\(_2\)</span>)</p></td>
+<td><p>X ppm</p></td>
+</tr>
+</tbody>
+</table>
+<p>Next, we’ll examine the transmission curves for many of the common atmospheric gases.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_transmission_figure</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">o2</span><span class="p">,</span>
+                         <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Oxygen&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/273d1d764d48b9c1149dbf5f4e8f39ceddd8751e385f929c5905679b734f6fe0.png" src="../_images/273d1d764d48b9c1149dbf5f4e8f39ceddd8751e385f929c5905679b734f6fe0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_transmission_figure</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">co2</span><span class="p">,</span>
+                         <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Carbon Dioxide&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f2d882dc883ff2b3b51a53e0f460bd9649c49e2b64d67bbb3a19576fa6128309.png" src="../_images/f2d882dc883ff2b3b51a53e0f460bd9649c49e2b64d67bbb3a19576fa6128309.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_transmission_figure</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">h2o</span><span class="p">,</span>
+                         <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Water Vapor&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a0bf726dd42303994bd89b60acdfef6ee81fcfbd5b2793c272ac6d9c055b1243.png" src="../_images/a0bf726dd42303994bd89b60acdfef6ee81fcfbd5b2793c272ac6d9c055b1243.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_transmission_figure</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">o3</span><span class="p">,</span>
+                         <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Ozone&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4426d1a3b72d3d6f92ff795fafa212b6f15e4d974f78a0bd2067b3801323acf7.png" src="../_images/4426d1a3b72d3d6f92ff795fafa212b6f15e4d974f78a0bd2067b3801323acf7.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_transmission_figure</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">ch4</span><span class="p">,</span>
+                         <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Methane&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9905acd7ebf9b4f8b31204a62ae23b2054ae3b2d5f58e6045c62d1123afbccf3.png" src="../_images/9905acd7ebf9b4f8b31204a62ae23b2054ae3b2d5f58e6045c62d1123afbccf3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_transmission_figure</span><span class="p">(</span><span class="n">wavelengths</span><span class="p">,</span> <span class="n">n2o</span><span class="p">,</span>
+                         <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Nitrous Oxide&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/30c43e65434815a67c1939606204742b41381deb41cbc26431bf1ae815b485d3.png" src="../_images/30c43e65434815a67c1939606204742b41381deb41cbc26431bf1ae815b485d3.png" />
+</div>
+</div>
+<p>Several important observations can be made by examining the plots above.</p>
+<p>First, it turns out that many of the atmospheric “wiggles” in the total transmission spectrum arise from water vapor - particularly in the shortware infrared region of the spectrum. Since water vapor is highly variable in the atmosphere, this has implications for radiation at the ocean surface.</p>
+<p>Second, we observe that ozone absorbs strongly in UV part of spectrum. This gas is important for protecting life on the planet since UV radiation is harmful to cell reproduction.</p>
+<p>Third, the main greenhouse gases shown above - carbon dioxide, methane, and nitrous oxide - are “invisible” in the visible range of the spectrum, but start to interact with radiation at the longer wavelengths.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -498,6 +697,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#total-atmospheric-tranmission">Total Atmospheric Tranmission</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transmission-by-atmospheric-constituents">Transmission by Atmospheric Constituents</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

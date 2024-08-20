@@ -60,6 +60,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'fundamentals/em_spectrum';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -395,22 +397,68 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="the-electromagnetic-spectrum">
 <h1>The Electromagnetic Spectrum<a class="headerlink" href="#the-electromagnetic-spectrum" title="Permalink to this headline">#</a></h1>
 <p>Remote sensing of the ocean is primarily focused with the observation of electromagnetic information going to and coming from the ocean surface. With the exception of gravimetry, all other remotely-sensed observations of the ocean use at least one portion of the electromagnetic spectrum.</p>
-<p>In this page, we describe the nature of light and outline the various components on the electromagnetic spectrum.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p>In this page, we describe the nature of light and outline the various components on the electromagnetic spectrum. It is intended to provide a brief overview of some charactertics of light sufficient to understand remote sensing topics (rather than providing a full overview of electromagnetism0.</p>
 <section id="the-duality-of-light">
 <h2>The Duality of Light<a class="headerlink" href="#the-duality-of-light" title="Permalink to this headline">#</a></h2>
-<p>Under Construction.</p>
+<p>In nature, light behaves as both a particle and a wave - a property called the wave-particle duality of light.</p>
+<p>As a particle, light can be thought of as a discrete packet of energy that is emitted or aborbed by an atom when an electron in the atom changes energy levels. The energy of the photon (<span class="math notranslate nohighlight">\(E\)</span>) associated emitted or absorbed by the atom is a function of is frequency (<span class="math notranslate nohighlight">\(f\)</span>) as</p>
+<div class="math notranslate nohighlight">
+\[
+E = hf
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(h = 6.26 \times 10^{-34}\)</span> J<span class="math notranslate nohighlight">\(\cdot\)</span>s is the Planck constant. Here, the term “frequency” is borrowed from light’s behavior as is a property of the individual photon - not the interval between photons being emitted or absorbed by an atom.</p>
+<p>When electromagnetic radiation is emitted from multiple sources, light acts as a wave propagating through the electromagnetic field of the universe. Maxwell’s equations - a set of 4 equations describing the behavior and inter-relationship between electric and magnetic fields - reveal that perturbations in the electic field coincide with orthogonal perturbations in the magnetic field. Light can be visualized as an oscillating pertubation in electromagnetic space as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Figure</span> <span class="n">here</span>
+</pre></div>
+</div>
+<p>The wavelength of light (<span class="math notranslate nohighlight">\(\lambda\)</span>) is related to its frequency (<span class="math notranslate nohighlight">\(f\)</span>) by the speed of light (<span class="math notranslate nohighlight">\(c = 2.99 \times 10^8\)</span> m/s) in the universe as</p>
+<div class="math notranslate nohighlight">
+\[
+c = \lambda f
+\]</div>
+<p>Note that <span class="math notranslate nohighlight">\(\lambda\)</span> has units of meters and <span class="math notranslate nohighlight">\(f\)</span> has units of 1/s, also known as Hertz (Hz). In this remote sensing book, we will primarily think about light in terms of its wavelength, meaning most equations will be written in terms of <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
 </section>
 <section id="id1">
 <h2>The Electromagnetic Spectrum<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<p>The electromagnetic spectrum defines the range of wavelengths of light in our universe. It can be visualized in the following figure:</p>
 <img alt="The Electromagnetic Spectrum" class="align-center" src="../_images/em_spectrum.png" />
+<p>Here, the wavelengths of light are organized with wavelength <em>increasing</em> from left to right. Since the energy associated with a single photon is directly proportional to frequency - and therefore inversely proportional to wavelength - the energy associated with this light is <em>decreasing</em> from left to right.</p>
+<p>The electromagnetic spectrum is divided into broad portions, summarized as follows:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Wavelength Range</p></th>
+<th class="head"><p>Oveview</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Gamma</p></td>
+<td><p><span class="math notranslate nohighlight">\(&lt; 10^{-11}\)</span> m</p></td>
+<td><p>High energy radiation produced from radioactive decay or fission, such as in the explosion of atomic bombs. Generated by interaction of cosmic rays with matter in the universe.</p></td>
+</tr>
+<tr class="row-odd"><td><p>X-ray</p></td>
+<td><p><span class="math notranslate nohighlight">\(10^{-11}\)</span> m - <span class="math notranslate nohighlight">\(10^{-8}\)</span> m</p></td>
+<td><p>High energy radiation produced from radioactive decay or fission.</p></td>
+</tr>
+<tr class="row-even"><td><p>Ultraviolet (UV)</p></td>
+<td><p><span class="math notranslate nohighlight">\(10^{-8}\)</span> m - <span class="math notranslate nohighlight">\(4\times 10^{-7}\)</span> m</p></td>
+<td><p>High energy radiation produced by the sun. A fraction of UV light is scattered or absorbed in the atmosphere, largely by ozone.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Visible</p></td>
+<td><p><span class="math notranslate nohighlight">\(4\times 10^{-7}\)</span> m - <span class="math notranslate nohighlight">\(7.5\times 10^{-7}\)</span> m</p></td>
+<td><p>Peak radiation produced by the sun. Termed “visible” because human eyes are adapted to sense these wavelengths of radiation.</p></td>
+</tr>
+<tr class="row-even"><td><p>Infrared</p></td>
+<td><p><span class="math notranslate nohighlight">\(7.5\times 10^{-7}\)</span> m - <span class="math notranslate nohighlight">\(0.001\)</span> m</p></td>
+<td><p>Low energy radiation emitted by all warm blackbody objects in the universe.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Radio</p></td>
+<td><p><span class="math notranslate nohighlight">\(&gt;0.001\)</span> m</p></td>
+<td><p>Low energy radiation emitted by all blackbody objects in the universe. Produced naturally in the universe as well as artifically on Earth for communication and other purposes.</p></td>
+</tr>
+</tbody>
+</table>
+<p>As we will see, there are many remote sensing applications that leverage electromagnetic radiation at a range of different wavelengths, primarily in the visible, infrared, and radio regions of the spectrum.</p>
 </section>
 </section>
 

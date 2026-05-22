@@ -1,0 +1,50 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: bbdf047e-6cdc-4b09-b300-24648ee3b5b8
+  title: Ocean Remote Sensing 
+  description: Course notes for Ocean Remote Sensing
+  keywords: [ocean remote sensing, satellite oceanography, marine science, climate science]
+  authors: [Mike Wood]
+  github: https://github.com/ProfMikeWood/ocean_remote_sensing_book
+  # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
+  toc:
+    - file: intro.md
+    - title: Getting Started
+      children:
+        - file: getting_started/setting_up_python_and_jupyter.md
+    - title: Fundamentals
+      children:
+        - file: fundamentals/em_spectrum.ipynb
+    - title: Optical Imagery
+      children:
+        - file: optical/optical_imagery.ipynb
+    - title: Ocean Color
+      children:
+        - file: ocean_color/chlor_a.ipynb
+    - title: Sea Surface Temperature
+      children:
+        - file: sst/sst.ipynb
+    - title: Sea Surface Salinity
+      children:
+        - file: sss/sss.ipynb
+    - title: Sea Ice
+      children:
+        - file: sea_ice/sea_ice.ipynb
+    - title: Ocean Surface Winds
+      children:
+        - file: ocean_winds/ocean_winds.ipynb
+    - title: Sea Surface Topography
+      children:
+        - file: sea_surface/ssh.ipynb
+    - title: Ocean Bottom Pressure
+      children:
+        - file: ocean_bottom_pressure/graviemetry.ipynb
+    - title: Labs
+site:
+  template: book-theme
+  options:
+    logo: logo.png
+  #   favicon: favicon.ico
+    
+

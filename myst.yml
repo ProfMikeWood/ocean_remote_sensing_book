@@ -12,35 +12,44 @@ project:
     - file: intro.md
     - title: Getting Started
       children:
+        - file: getting_started/organizing_the_file_system.md
         - file: getting_started/setting_up_python_and_jupyter.md
+        - file: getting_started/download_qgis.md
+        - file: getting_started/register_accounts.md
     - title: Fundamentals
       children:
         - file: fundamentals/em_spectrum.ipynb
-    - title: Optical Imagery
-      children:
-        - file: optical/optical_imagery.ipynb
-    - title: Ocean Color
-      children:
-        - file: ocean_color/chlor_a.ipynb
-    - title: Sea Surface Temperature
-      children:
-        - file: sst/sst.ipynb
-    - title: Sea Surface Salinity
-      children:
-        - file: sss/sss.ipynb
-    - title: Sea Ice
-      children:
-        - file: sea_ice/sea_ice.ipynb
-    - title: Ocean Surface Winds
-      children:
-        - file: ocean_winds/ocean_winds.ipynb
-    - title: Sea Surface Topography
-      children:
-        - file: sea_surface/ssh.ipynb
-    - title: Ocean Bottom Pressure
-      children:
-        - file: ocean_bottom_pressure/graviemetry.ipynb
+        - file: fundamentals/blackbodies.ipynb
+    # - title: Optical Imagery
+    #   children:
+    #     - file: optical/optical_imagery.ipynb
+    # - title: Ocean Color
+    #   children:
+    #     - file: ocean_color/chlor_a.ipynb
+    # - title: Sea Surface Temperature
+    #   children:
+    #     - file: sst/sst_physical_basis.ipynb
+    #     - file: sst/sst_satellites_and_data.ipynb
+    #     - file: sst/sst_algorithms.ipynb
+    # - title: Sea Surface Salinity
+    #   children:
+    #     - file: sss/sss.ipynb
+    # - title: Sea Ice
+    #   children:
+    #     - file: sea_ice/sea_ice.ipynb
+    # - title: Ocean Surface Winds
+    #   children:
+    #     - file: ocean_winds/ocean_winds.ipynb
+    # - title: Sea Surface Topography
+    #   children:
+    #     - file: sea_surface/ssh.ipynb
+    # - title: Ocean Bottom Pressure
+    #   children:
+    #     - file: ocean_bottom_pressure/graviemetry.ipynb
     - title: Labs
+      children:
+        - file: labs/lab01_qgis_bathy.md
+        # - file: labs/lab02_landsat_natural.md
 site:
   template: book-theme
   options:

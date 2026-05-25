@@ -9,10 +9,10 @@ To download Miniconda, navigate to https://docs.conda.io/en/latest/miniconda.htm
 ## Set up a conda environment
 After you have downloaded miniconda, set up a conda environment. Begin by opening up a terminal of your choice. On Windows, you can open the "Anaconda Prompt" application by searching for it in the start menu. On Mac, you can open a standard Terminal in the Applications/Utilities directory. 
 
-With your terminal open, create a conda environment called ms285 with Python version 3.12 using the following command:
+With your terminal open, create a conda environment called ms274 with Python version 3.12 using the following command:
 
 ```
-conda create --name ms285 python=3.12
+conda create --name ms274 python=3.12
 ```
 By default, conda will automatically activate a "base" environment on your machine. To disable this behavior, you may want to run the following:
 ```
@@ -21,7 +21,7 @@ conda config --set auto_activate_base false
 
 Now, activate your environment as follows:
 ```
-conda activate ms285
+conda activate ms274
 ```
 
 Every time you use your environment, you will need to activate it from the command line.
@@ -31,20 +31,20 @@ Next, download the pertinent modules required for this course:
 ```
 conda install numpy
 conda install matplotlib
-conda install pytorch
 conda install pandas
 conda install netcdf4
 conda install scipy
-conda install scikit-learn
+conda install h5py
+conda install shapefile
 conda install jupyter
 conda install jupyterlab
 conda install git
 ```
 
 ```{note}
-If any of the conda installations don't work, you can specify the source directly. For example, `scikit-learn` is available via `conda-forge` as 
+If any of the conda installations don't work, you can specify the source directly. For example, `h5py` is available via `conda-forge` as 
 ```{code}
-conda install conda-forge::scikit-learn
+conda install conda-forge::h5py
 ```
 
 Finally, configure your environment to use in a jupyter notebook. 
@@ -52,12 +52,12 @@ Finally, configure your environment to use in a jupyter notebook.
 On MacOS, use:
 
 ```
-python3 -m ipykernel install --user --name=ms285
+python3 -m ipykernel install --user --name=ms274
 ```
 
 On Windows, use:
 ```
-python -m ipykernel install --user --name=ms285
+python -m ipykernel install --user --name=ms274
 ```
 
 

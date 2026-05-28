@@ -47,6 +47,12 @@ If any of the conda installations don't work, you can specify the source directl
 conda install conda-forge::h5py
 ```
 
+In addition, we'll install one more package:
+
+```
+pip install podaac-data-subscriber
+```
+
 Finally, configure your environment to use in a jupyter notebook. 
 
 On MacOS, use:

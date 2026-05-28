@@ -34,7 +34,7 @@ project:
     # - title: Sea Surface Salinity
     #   children:
     #     - file: sss/sss.ipynb
-    # - title: Sea Ice
+    # - title: Sea Ice Concentration
     #   children:
     #     - file: sea_ice/sea_ice.ipynb
     # - title: Ocean Surface Winds
@@ -50,6 +50,10 @@ project:
       children:
         - file: labs/lab01_qgis_bathy.md
         # - file: labs/lab02_landsat_natural.md
+        # - file: labs/lab03_ndis.md
+        # - file: labs/lab04_ocean_color.md
+        # - file: labs/lab07_sss_timeseries.ipynb
+        # - file: labs/lab08_sea_trends.ipynb
 site:
   template: book-theme
   options:

@@ -39,6 +39,8 @@ jobs:
         run: npm install -g jupyter-book
       - name: Build HTML Assets
         run: jupyter-book build --html
+      - name: Copy favicon
+        run: cp favicon.svg _build/html/favicon.svg
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

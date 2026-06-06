@@ -20,9 +20,12 @@ project:
       children:
         - file: fundamentals/em_spectrum.ipynb
         - file: fundamentals/blackbodies.ipynb
+        - file: fundamentals/orbits_and_resolution.ipynb
+        - file: fundamentals/data_product_levels.ipynb
     # - title: Optical Imagery
     #   children:
     #     - file: optical/optical_imagery.ipynb
+    #     - file: optical/landsat_program.ipynb
     # - title: Ocean Color
     #   children:
     #     - file: ocean_color/chlor_a.ipynb
@@ -45,13 +48,14 @@ project:
     #     - file: sea_surface/ssh.ipynb
     # - title: Ocean Bottom Pressure
     #   children:
-    #     - file: ocean_bottom_pressure/graviemetry.ipynb
+    #     - file: ocean_bottom_pressure/gravimetry.ipynb
     - title: Labs
       children:
         - file: labs/lab01_qgis_bathy.md
-        # - file: labs/lab02_landsat_natural.md
+        - file: labs/lab02_landsat_natural.md
         # - file: labs/lab03_ndis.md
         # - file: labs/lab04_ocean_color.md
+        # - file: labs/lab05_sst_python.ipynb
         # - file: labs/lab07_sss_timeseries.ipynb
         # - file: labs/lab08_sea_trends.ipynb
 site:

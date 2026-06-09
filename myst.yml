@@ -28,7 +28,9 @@ project:
     #     - file: optical/landsat_program.ipynb
     # - title: Ocean Color
     #   children:
-    #     - file: ocean_color/chlor_a.ipynb
+    #     - file: ocean_color/ocean_color_physical_basis.ipynb
+    #     - file: ocean_color/ocean_color_satellites_and_data.ipynb
+    #     - file: ocean_color/ocean_color_algorithms.ipynb
     # - title: Sea Surface Temperature
     #   children:
     #     - file: sst/sst_physical_basis.ipynb

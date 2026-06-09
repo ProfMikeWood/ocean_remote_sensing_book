@@ -27,6 +27,15 @@ This is a pretty basic map, but it will help us get acquainted with the differen
 
 To get started with this lab, boot up QGIS. When the initial prompt comes up, choose to begin a New Project (or click on the white rectangle in the upper-left corner).
 
+In your file system, create the following folder structure in your Lab folder:
+
+```
+Labs
+ |-Lab 1
+   |-Raster Layers
+   |-Vector Layers
+```
+
 By default, QGIS will begin in “latitude-longitude” coordinates. You can double check this by checking that your projection says **EPSG: 4326** in the lower right corner. We'll discuss projections a bit more in the next lab.
 
 To configure your view, I find that it’s easiest to choose to see the Layers panel and the map. You can edit the viewable panels from the View → Panels tab.
@@ -39,7 +48,7 @@ name: new-qgis-project
 Screenshot of a new QGIS Project with the Layers Panel and Map View.
 ```
 
-Once you're happy with you setup, save your Project in your Lab 1 Map directory. It's good practice to save your project in the correct place - and often! When working with lots of data at once, GIS programs tend to use lots of RAM and are prone to crashing. Saving often ensures you can always pick back up from where you started.
+Once you're happy with you setup, save your Project in your Lab 1 directory. It's good practice to save your project in the correct place - and often! When working with lots of data at once, GIS programs tend to use lots of RAM and are prone to crashing. Saving often ensures you can always pick back up from where you started.
  
 
 ## Part 1: Working with Vector Layers
@@ -60,7 +69,7 @@ Vector layers are commonly distributed as shapefiles or possibly geopackages. Ma
 NOAA’s National Center for Environmental Information stores lots of different geospatial datasets. For this lab, we'll download a shapefile of the global coastlines from NOAA's Center for Environmental Information [HERE](https://www.ngdc.noaa.gov/mgg/shorelines/shorelines.html).
 
 ```{note}
-As of 2026, the global link to *Download GSHHG data version 2.3.7* is broken. However, the shapefile can still be obtained from the link [HERE](https://www.soest.hawaii.edu/pwessel/gshhg/) and clicking the link **FTP: GSHHG coastlines, political borders and rivers in shapefile format (zip archive)**. This will download a zip file that may download to your Downloads folder. Be sure to move this into your Map/Vector folder before moving on.
+As of 2026, the global link to *Download GSHHG data version 2.3.7* is broken. However, the shapefile can still be obtained from the link [HERE](https://www.soest.hawaii.edu/pwessel/gshhg/) and clicking the link **FTP: GSHHG coastlines, political borders and rivers in shapefile format (zip archive)**. This will download a zip file that may download to your Downloads folder. Be sure to move this into your Vector Layers folder before moving on.
 ```
 
 Once you've obtained the global coastline file, unzip it and take a look at the contents inside the **GSHHS_shp** folder. Here, you will find five folders with the coastlines at different resolutions. According to the GSHHS documentation, these resolutions are organized as follows:
@@ -112,7 +121,7 @@ After you've added your layers, change the properties of your shapefile so that 
  
 ## Part 2: Working with Raster Layers
 
-Raster Layers are designed to represent 2D gridded data and are therefore quite common in remote sensing. Most satellite datasets are distributed as raster layers. Raster files inherently have a resolution (or a “posting”) which describes the size and spacing of each cell. Raster layers are commonly distributed as Geotiffs (which have the extension tif, tiff, or TIFF). Recently, NetCDF (nc) files have been designed to be used as raster layers in GIS applications as well. 
+Rasterlayers are designed to represent 2D gridded data and are therefore quite common in remote sensing. Most satellite datasets are distributed as raster layers. Raster files inherently have a resolution (or a “posting”) which describes the size and spacing of each cell. Raster layers are commonly distributed as Geotiffs (which have the extension tif, tiff, or TIFF). Recently, NetCDF (nc) files have been designed to be used as raster layers in GIS applications as well. 
 
 ### The General Bathymetric Chart of the Oceans
 

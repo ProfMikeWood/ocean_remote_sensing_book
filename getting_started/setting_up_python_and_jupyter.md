@@ -47,7 +47,7 @@ If any of the conda installations don't work, you can specify the source directl
 conda install conda-forge::h5py
 ```
 
-In addition, we'll install one more package:
+In addition, we'll install one more package which is only available via `pip`:
 
 ```
 pip install podaac-data-subscriber

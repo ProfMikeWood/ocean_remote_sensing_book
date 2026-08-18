@@ -1,6 +1,6 @@
 # Registering For Accounts
 
-These resources use satellite data from a variety of sources. To prepare for each
+The notebooks in this "book" use satellite data from a variety of sources. Much of this data will be downloaded from public repositories that require a log in credentials. Register for credentials on the following systems.
 
 ## USGS Earth Resources Observation and Science (EROS) Center
 
@@ -15,7 +15,7 @@ When setting up your credentials for these accounts, do not use a password that 
 ```
 
 ### Setting Up a netrc File on MacOS
-On a mac, open up the **Terminal** from the Utilities menu. To use the automatic Earthdata download tools from PODAAC, the first thing we will need to do is store our Earthdata credentials in our home directory. You can find this directory on a Mac using the following command in the terminal:
+On a Mac, open up the **Terminal** from the Utilities menu. To use the automatic Earthdata download tools from PODAAC, the first thing we will need to do is store our Earthdata credentials in our home directory. You can find this directory on a Mac using the following command in the terminal:
 
 ```
 echo $HOME

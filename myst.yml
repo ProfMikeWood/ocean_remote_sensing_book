@@ -54,7 +54,7 @@ project:
     - title: Labs
       children:
         - file: labs/lab01_qgis_bathy.md
-        # - file: labs/lab02_landsat_natural.md
+        - file: labs/lab02_landsat_natural.md
         # - file: labs/lab03_ndis.md
         # - file: labs/lab04_ocean_color.md
         # - file: labs/lab05_sst_python.ipynb

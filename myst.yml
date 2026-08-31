@@ -22,10 +22,10 @@ project:
         - file: fundamentals/blackbodies.ipynb
         - file: fundamentals/orbits_and_resolution.ipynb
         - file: fundamentals/data_product_levels.ipynb
-    # - title: Optical Imagery
-    #   children:
-    #     - file: optical/optical_imagery.ipynb
-    #     - file: optical/landsat_program.ipynb
+    - title: Optical Imagery
+      children:
+        - file: optical/optical_imagery.ipynb
+        - file: optical/landsat_program.ipynb
     # - title: Ocean Color
     #   children:
     #     - file: ocean_color/ocean_color_physical_basis.ipynb

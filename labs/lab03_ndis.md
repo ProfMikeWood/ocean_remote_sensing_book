@@ -1,6 +1,6 @@
 # Lab 3: Remote Sensing Indices
 
-In this lab, we will investigate difference indices using Landsat data. As a case study, we will examine seasonal differences in snow cover and vegetation in Yosemite National Park which had a particularly wet winter in 2023. In particular, we will compare difference indices for snow and vegetation. This is a decidedly terrestrial example in a set of notes otherwise focused on marine applications, but it provides a convenient approach to examine two types of normalized-difference indices in the same location.
+In this lab, we will investigate difference indices using Landsat data. As a case study, we will examine seasonal differences in snow cover and vegetation in Yosemite National Park which had a particularly wet winter in 2023. This is a decidedly terrestrial example in a set of notes otherwise focused on marine applications, but it provides a convenient approach to examine two types of normalized-difference indices in the same location.
 
 ## Step 1: Data Gathering and Preparation
 

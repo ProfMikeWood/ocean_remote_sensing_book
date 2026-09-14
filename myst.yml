@@ -22,6 +22,7 @@ project:
         - file: fundamentals/blackbodies.ipynb
         - file: fundamentals/orbits_and_resolution.ipynb
         - file: fundamentals/data_product_levels.ipynb
+        - file: fundamentals/atmospheric_transmission.ipynb
     - title: Optical Imagery
       children:
         - file: optical/optical_imagery.ipynb

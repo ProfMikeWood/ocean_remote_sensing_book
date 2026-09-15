@@ -31,7 +31,7 @@ Labs
 
 ### Download MODIS Chlorophyll-a Data
 
-To get a feel for ocean color data, we will look at Level-3 chlorophyll-a data. To explore the available data, navigate to the Level 3 & 4 Browser at https://oceancolor.gsfc.nasa.gov/l3/. This link is different from the DAAC link above. It provides access to fewer datasets, but it has a convenient interface for downloading data.
+To get a feel for ocean color data, we will look at Level-3 chlorophyll-a data. To explore the available data, navigate to the Level 3 & 4 Browser at https://oceandata.sci.gsfc.nasa.gov/l3/. This link is different from the DAAC link above. It provides access to fewer datasets, but it has a convenient interface for downloading data.
 
 In this browser, choose the following options:
 - Instrument: Aqua-MODIS

@@ -16,6 +16,7 @@ project:
         - file: getting_started/setting_up_python_and_jupyter.md
         - file: getting_started/download_qgis.md
         - file: getting_started/register_accounts.md
+        - file: getting_started/download_panoply.md
     - title: Fundamentals
       children:
         - file: fundamentals/em_spectrum.ipynb
@@ -30,13 +31,13 @@ project:
     - title: Ocean Color
       children:
         - file: ocean_color/ocean_color_physical_basis.ipynb
-    #     - file: ocean_color/ocean_color_satellites_and_data.ipynb
-    #     - file: ocean_color/ocean_color_algorithms.ipynb
-    # - title: Sea Surface Temperature
-    #   children:
-    #     - file: sst/sst_physical_basis.ipynb
-    #     - file: sst/sst_satellites_and_data.ipynb
-    #     - file: sst/sst_algorithms.ipynb
+        - file: ocean_color/ocean_color_satellites_and_data.ipynb
+        - file: ocean_color/ocean_color_algorithms.ipynb
+    - title: Sea Surface Temperature
+      children:
+        - file: sst/sst_physical_basis.ipynb
+        # - file: sst/sst_satellites_and_data.ipynb
+        # - file: sst/sst_algorithms.ipynb
     # - title: Sea Surface Salinity
     #   children:
     #     - file: sss/sss.ipynb
@@ -58,7 +59,7 @@ project:
         - file: labs/lab02_landsat_natural.md
         - file: labs/lab03_ndis.md
         - file: labs/lab04_ocean_color.md
-        # - file: labs/lab05_sst_python.ipynb
+        - file: labs/lab05_sst_python.ipynb
         # - file: labs/lab07_sss_timeseries.ipynb
         # - file: labs/lab08_sea_trends.ipynb
         # - file: labs/lab13_grace_slr.ipynb

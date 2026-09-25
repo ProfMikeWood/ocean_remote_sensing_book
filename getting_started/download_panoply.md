@@ -1,25 +1,19 @@
-# Downloading and Installing QGIS
+# Downloading Panoply
 
-While a lot of satellite data processing and analysis is done with code (Python in these examples), it is often helpful to be able to view and modify data on a map. Geographical Information System (GIS) software provides a convenient way to explore data and make figures. Here, we will use the Quantum GIS (QGIS) program.
+## Why Panoply?
 
-```{figure} ../images/getting_started/qgis_logo.png
+Network Common Data Format (netCDF) is a type of file format designed for gridded, array-based data along with associated data. Many satellite data products are delivered in netCDF files because the higher level products tend to be organized in a gridded formats. To help facilitate quick visualization of netCDF file contents, a NASA team has written a program called [Panoply](https://www.giss.nasa.gov/tools/panoply/) for visualizing these types of files.
+
+```{figure} ../images/getting_started/panoply.png
 ---
-height: 200px
-name: qgis-logo
+width: 100%
+name: panoply-screenshot
 align: left
 ---
-The QGIS Logo
+A screenshot of the Panoply program with a plot of an SST field around the California Current.
 ```
 
-## Why QGIS?
+## Downloading Panoply
 
-In the world of GIS desktop applications, ArcGIS is a big name. It is used by a lot of public utilities (cities, municipalities, etc) and is taught in many undergraduate courses. It is a great tool.
-
-For the casual researcher, however, there are two main limitations for ArcGIS. First, it requires a license - and unless you're an employee or student of an institution that springs for such things, you're own your own to pay the high costs of a license. Second, ArcGIS can only be used on Windows systems - sorry Mac folks, mapping is not for you.
-
-QGIS provides a remedy to both of these issues - it is open source (free!) and it can be used on any operating system. Thus, for researchers, QGIS is an amazing resource.
-
-## Downloading QGIS
-
-To download QGIS, navigate to their site here: https://qgis.org/download/. Then, download the most recent Long Term Release (LTR) to your system.
+To download Panoply, navigate to their site here: https://www.giss.nasa.gov/tools/panoply/download/. Then, download the program corresponding to your machine. Note that you will need to have a version of Java on your machine that corresponds to the program - be sure to investigate the README file provided with the program for your machine.
     

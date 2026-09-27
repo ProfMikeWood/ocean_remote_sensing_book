@@ -60,6 +60,7 @@ project:
         - file: labs/lab03_ndis.md
         - file: labs/lab04_ocean_color.md
         - file: labs/lab05_sst_python.ipynb
+        # - file: labs/lab06_sss_timeseries.ipynb
         # - file: labs/lab07_sss_timeseries.ipynb
         # - file: labs/lab08_sea_trends.ipynb
         # - file: labs/lab13_grace_slr.ipynb

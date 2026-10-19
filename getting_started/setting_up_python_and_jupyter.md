@@ -39,6 +39,8 @@ conda install shapefile
 conda install jupyter
 conda install jupyterlab
 conda install git
+conda install earthaccess
+conda install cartopy
 ```
 
 ```{note}

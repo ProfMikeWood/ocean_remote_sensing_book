@@ -62,7 +62,7 @@ project:
         - file: labs/lab05_sst_python.ipynb
         - file: labs/lab06_sss_timeseries.ipynb
         - file: labs/lab07_seaice_trends.ipynb
-        # - file: labs/lab08_sea_trends.ipynb
+        - file: labs/lab08_wind_figures.ipynb
         # - file: labs/lab13_grace_slr.ipynb
 site:
   template: book-theme

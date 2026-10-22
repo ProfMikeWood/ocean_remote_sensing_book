@@ -53,6 +53,9 @@ project:
     # - title: Ocean Bottom Pressure
     #   children:
     #     - file: ocean_bottom_pressure/gravimetry.ipynb
+    - title: Data Aquisition
+      children:
+        - file: data_aquisition/download_thredds_daily.ipynb
     - title: Labs
       children:
         - file: labs/lab01_qgis_bathy.md

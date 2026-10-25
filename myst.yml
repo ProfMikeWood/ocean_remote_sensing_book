@@ -66,6 +66,7 @@ project:
         - file: labs/lab06_sss_timeseries.ipynb
         - file: labs/lab07_seaice_trends.ipynb
         - file: labs/lab08_wind_figures.ipynb
+        - file: labs/lab09_ssh_movies.ipynb
         # - file: labs/lab13_grace_slr.ipynb
 site:
   template: book-theme

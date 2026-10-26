@@ -8,7 +8,7 @@ The [EarthExplorer](https://earthexplorer.usgs.gov/ portal, hosted by the US Geo
 
 ## NASA Earthdata
 
-NASA provides access to a wide range of satellite data through [Earthdata](https://www.earthdata.nasa.gov/). To access these resources, create an account [HERE](https://urs.earthdata.nasa.gov/users/new). 
+NASA provides access to a wide range of satellite data through [Earthdata](https://www.earthdata.nasa.gov/). To access these resources, create an account [HERE](https://urs.earthdata.nasa.gov/users/new). These tools will be used with the `earthaccess` and `podaac-data-subscriber` tools installed in the Python installation section. 
 
 ```{warning}
 When setting up your credentials for these accounts, do not use a password that you use for other senstive applications. This password will be saved in profile file on your machine. 
@@ -71,3 +71,8 @@ Next type `dir` and ensure you can see your `.netrc` file in the list of files. 
 ```
 mv .netrc.txt .netrc
 ```
+
+
+## Copernicus Marine
+
+The [Copernicus Marine Service](https://marine.copernicus.eu/) is part of the European Union's Copernicus programme which provides open source data on the state of the global ocean. Like the NASA Earthdata portal, it provides automated tools to access physical and biogeochemical information like ocean temperature, salinity, currents, and sea ice. To access these tools, sign up for an account on the registration page of [Copernicus Marine Service](https://marine.copernicus.eu/) site. These credentials will be used with the `copernicusmarine` tools installed in the Python environment for this book.

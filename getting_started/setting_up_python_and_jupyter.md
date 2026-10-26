@@ -35,11 +35,13 @@ conda install pandas
 conda install netcdf4
 conda install scipy
 conda install h5py
+conda install moviepy
 conda install shapefile
 conda install jupyter
 conda install jupyterlab
 conda install git
 conda install earthaccess
+conda install copernicusmarine
 conda install cartopy
 ```
 
